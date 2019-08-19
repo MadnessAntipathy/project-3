@@ -1,3 +1,3 @@
 class Report < ApplicationRecord
-  has_many :orders
+  has_many :sales
 end
