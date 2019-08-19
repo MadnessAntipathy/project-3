@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-  has_many :menuitem
+  has_and_belongs_to_many :items
   belongs_to :table
 end
