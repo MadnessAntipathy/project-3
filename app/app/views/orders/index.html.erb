@@ -1,0 +1,9 @@
+<h1> Order Chits </h1>
+
+<% @orders.each do |order| %>
+	<h1>Order ID: <%= order.id %></h1>
+	<h2>Table ID: <%= order.table_id %></h2>
+	<% order.items.each do |item| %>
+	<p><%= item.name %></p>
+	<% end %>
+<% end %>
