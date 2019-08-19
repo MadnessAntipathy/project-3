@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_094502) do
+ActiveRecord::Schema.define(version: 2020_08_19_094504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
     t.string "name"
+    t.text "category"
     t.integer "price"
     t.text "picture"
     t.datetime "created_at", null: false
@@ -40,15 +41,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_094502) do
     t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
-  create_table "orders_sales", force: :cascade do |t|
-    t.bigint "order_id"
-    t.bigint "sale_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_orders_sales_on_order_id"
-    t.index ["sale_id"], name: "index_orders_sales_on_sale_id"
-  end
-
   create_table "reports", force: :cascade do |t|
     t.bigint "sale_id"
     t.datetime "created_at", null: false
@@ -66,10 +58,23 @@ ActiveRecord::Schema.define(version: 2020_08_19_094502) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.bigint "table_id"
+    t.bigint "order_id"
+    t.float "totalsale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["table_id"], name: "index_sales_on_table_id"
+    t.index ["order_id"], name: "index_sales_on_order_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "staffname"
+    t.index ["email"], name: "index_staffs_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
+    t.index ["staffname"], name: "index_staffs_on_staffname", unique: true
   end
 
   create_table "tables", force: :cascade do |t|
