@@ -1,0 +1,31 @@
+<h1>All items</h1>
+
+<%= form_tag(items_path, method: "get") do %>
+
+ <%end%>
+
+<table>
+  <tr>
+  	<th>Name</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Picture</th>
+    <th></th>
+  </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+    	  <td><%= item.name %></td>
+        <td><%= item.category %></td>
+        <td><%= item.price %></td>
+        <td><%= image_tag ( item.picture) %></td>
+        <td><%= link_to 'Show', item_path(item) %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item_path(item),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New item', new_item_path %>
