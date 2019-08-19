@@ -1,0 +1,36 @@
+
+<div style="border: 1px solid red; text-align:right">
+<% if staff_session %>
+<p>Current Staff Logged In</p>
+<%= current_staff.email %>
+<%= button_to "Logout", destroy_staff_session_path, method: :delete %>
+
+<% else %>
+<%= button_to "Sign In For Staff", new_staff_session_path %>
+<% end %>
+
+</div>
+<div style="border: 1px solid red; text-align:center">
+  <div style="display:inline-block">
+    <%= button_to 'Kitchen', new_staff_session_path %>
+  </div>
+  <div style="display:inline-block">
+    <%= button_to 'Table', tables_path, method: :get, local: true %>
+  </div>
+  <div style="display:inline-block">
+    <%= button_to 'FOH', new_staff_session_path %>
+  </div>
+</div>
+
+<div style="border: 1px solid red">
+  <div style="height:500px; width:500px; margin:0 auto">
+
+    <p style="text-align:center">data from kitchen table and FOH will be rendered here</p>
+  </div>
+</div>
+
+<%= form_with scope: :table, url: tables_path, local: true do |form| %>
+  <p>
+    <%= form.submit "Create Table" %>
+  </p>
+<% end %>
