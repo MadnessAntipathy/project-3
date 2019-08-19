@@ -1,7 +1,7 @@
 class TablesController < ApplicationController
   def index
     @tables = Table.all
-    render JSON: @tables
+    render json: @tables
   end
   def new
   end
