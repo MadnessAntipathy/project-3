@@ -14,4 +14,8 @@ class TablesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @table = Table.find(params[:id])
+  end
+
 end
