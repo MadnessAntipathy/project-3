@@ -22,7 +22,24 @@ Paloma.controller('Items', {
                     }
                     for(let i = 0; i < data.length; i++){
                         var newdiv = document.createElement('div');
-                        newdiv.innerHTML = `<h2>${data[i].name}</h2> <br /> <p>Price: ${data[i].price}</p> <img src=${data[i].picture} />`;
+                        var newform = document.createElement("form");
+                        newform.setAttribute('onsubmit', sendItem);
+                        newdiv.innerHTML = `<h2>${data[i].name}</h2> <p>Price: ${data[i].price}</p> <img src=${data[i].picture} />`;
+                        var idinput = document.createElement('input');
+                        idinput.setAttribute("type", "hidden");
+                        idinput.setAttribute("value", `${data[i].id}`);
+                        newform.appendChild(idinput);
+                        var qtyinput = document.createElement('input');
+                        qtyinput.setAttribute("type", "number");
+                        qtyinput.setAttribute("min", "0");
+                        qtyinput.setAttribute("max", "10");
+                        newform.appendChild(qtyinput);
+                        var submitbtn = document.createElement('button');
+                        submitbtn.setAttribute("type", "submit");
+                        submitbtn.setAttribute("value", "submit");
+                        submitbtn.innerHTML = "Submit";
+                        newform.appendChild(submitbtn);
+                        newdiv.appendChild(newform);
                         output.appendChild(newdiv);
                     }
                 },
@@ -31,5 +48,10 @@ Paloma.controller('Items', {
                 }
             })
         })
+
+        var sendItem = function() {
+            console.log(event.target);
+
+        }
     }
 });
