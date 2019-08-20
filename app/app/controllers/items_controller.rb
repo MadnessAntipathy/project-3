@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-
   end
 
   def new
@@ -14,9 +13,37 @@ class ItemsController < ApplicationController
     redirect_to @item
   end
 
-  def show
-    @item = Item.find(params[:id])
+  def cart
+    p params[:format]
+    p cart_params
+    @cart = Cart.new(cart_params)
+    @cart.save
+
+    redirect_to items_path
+
   end
+
+  def show
+    puts '``````````````````````````````````````````````````````````````'
+    puts params[:category]
+    if params.has_key?(:category)
+      if(params[:category] == "drinks" )
+          @items = Item.where(:category => 'drinks')
+      elsif (params[:category] == "starter" )
+          @items = Item.where(:category => 'starter')
+      elsif (params[:category] == "mains" )
+          @items = Item.where(:category => 'mains')
+      elsif (params[:category] == "desserts" )
+          @items = Item.where(:category => 'desserts')
+      elsif (params[:category] == "sides" )
+          @items = Item.where(:category => 'sides')
+      end
+    else
+      @item = Item.find(params[:id])
+    end
+  end
+
+
 
   def optionajax
       p JSON.parse(params[:category])
@@ -53,5 +80,8 @@ class ItemsController < ApplicationController
 private
   def item_params
     params.require(:item).permit(:name, :category, :price, :picture)
+  end
+  def cart_params
+    params.require(:cart).permit(:table_id, :item_id, :item_quantity)
   end
 end
