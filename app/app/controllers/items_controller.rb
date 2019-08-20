@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    session[:table] = params[:format]
     @items = Item.all
 
   end
