@@ -1,4 +1,5 @@
 class Sale < ApplicationRecord
-  belongs_to :table
-  belongs_to :report
+  # belongs_to :table
+  has_many :orders
+  # belongs_to :report
 end

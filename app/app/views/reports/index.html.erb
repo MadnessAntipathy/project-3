@@ -5,11 +5,13 @@
 	<tr>
 		<th>Transaction ID</th>
 		<th>Bill Amount</th>
+		<th>Action</th>
 	</tr>
 	<% @sales.each do |sale| %>
 	<tr>
 		<td><%= sale.id %></td>
 		<td><%= sale.totalsale %></td>
+		<td><a><%= link_to 'View', sale_path(sale) %></a></td>
 	</tr>
 	<% end %>
 </table>

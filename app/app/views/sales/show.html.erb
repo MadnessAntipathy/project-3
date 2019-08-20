@@ -1,12 +1,12 @@
 <h1>Transaction: <%= @sale.id %></h1>
 
-
 	<table>
 	<tr>
 		<th>Item</th>
 		<th>Quantity</th>
 		<th>Price</th>
 	</tr>
+
 	<% @qty.each do |qty| %>
 	<tr>
 		<td><%= qty.item.name  %></td>
@@ -15,6 +15,7 @@
 	</tr>
 	<% end %>
 </table>
+
 
 
 
