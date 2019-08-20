@@ -1,10 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    p params[:format]
     session[:table] = params[:format]
-    puts session[:table]
-    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
     @items = Item.all
 
   end
@@ -24,7 +20,6 @@ class ItemsController < ApplicationController
   end
 
   def optionajax
-
       p JSON.parse(params[:category])
       cat = JSON.parse(params[:category].downcase)
       @items = Item.where(:category => cat)
