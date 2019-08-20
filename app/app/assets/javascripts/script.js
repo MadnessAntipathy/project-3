@@ -23,8 +23,7 @@ Paloma.controller('Items', {
                     for(let i = 0; i < data.length; i++){
                         var newdiv = document.createElement('div');
                         var newform = document.createElement("form");
-                        newform.setAttribute('method',"POST");
-                        newform.setAttribute('action',"/orders");
+                        newform.setAttribute('onsubmit', sendItem);
                         newdiv.innerHTML = `<h2>${data[i].name}</h2> <p>Price: ${data[i].price}</p> <img src=${data[i].picture} />`;
                         var idinput = document.createElement('input');
                         idinput.setAttribute("type", "hidden");
@@ -49,5 +48,10 @@ Paloma.controller('Items', {
                 }
             })
         })
+
+        var sendItem = function() {
+            console.log(event.target);
+
+        }
     }
 });
