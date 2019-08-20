@@ -9,19 +9,36 @@ class MainsController < ApplicationController
   def orders
     puts "working here~"
     @orders = Order.all
-
     puts @orders.inspect
-
-    # where("completed != true")
     render json: @orders
   end
   def complete
-    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    puts request.query_string
-    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-    order1 = Order.find(request.query_string)
-    order1.completed = true
-    order1.save
-    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    order = Order.find(request.query_string)
+    order.completed = true
+    order.save
+  end
+  def table
+    @tables = Table.all
+  end
+  def assign
+    @table = Table.find(params[:format])
+    @table.active_status = "true"
+    @table.save
+    redirect_to @table
+  end
+  def release
+    @table = Table.find(params[:format])
+    @table.active_status = ""
+    @sales = Sale.new
+    @sales.save
+    orders = Order.where(table_id:params[:format])
+    orders.each do |order|
+      order.sales_id = @sales.id
+      order.table_id = nil
+      order.save
+    end
+    # orders.destroy
+    @table.save
+    redirect_to @table
   end
 end

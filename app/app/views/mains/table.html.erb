@@ -1,0 +1,21 @@
+<div class="content">
+
+  <% @tables.each do|table| %>
+    <a href=/tables/<%= table.id.to_s %>>
+    <div <% if table.active_status? %> style="background-color:red; width:100px; display:inline-block" <% else %> style="background-color:green; width:100px; display:inline-block" <% end %>>
+      <p>Table ID: <%= table.id%></p>
+      <p>Table Status: <%= table.active_status%></p>
+    </div>
+    </a>
+
+  <% end %>
+
+</div>
+
+<script>
+  window.onload = function(){
+    // setInterval(function(){
+    //   window.location.reload()
+    // },3000)
+  }
+</script>

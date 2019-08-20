@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_094505) do
     t.bigint "table_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sales_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
