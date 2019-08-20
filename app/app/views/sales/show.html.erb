@@ -1,0 +1,22 @@
+<h1>Transaction: <%= @sale.id %></h1>
+
+<% @orders.each do |order| %>
+	<h1>Order ID: <%= order.id %></h1>
+	<table>
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+	<% order.items.each do |item| %>
+	<tr>
+		<td><%= item.name %></td>
+		<td><%= item_quantity %></td>
+		<td><%= item.price %></td>
+	</tr>
+	<% end %>
+</table>
+<% end %>
+
+
+<h2>Bill Amount: <%= @sale.totalsale %></h2>

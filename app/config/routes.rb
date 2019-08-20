@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :tables
 
   get '/reports' => 'reports#index', as: 'reports'
+  get '/sales/:id' => 'sales#show' , as: 'sale'
 
 
 end
