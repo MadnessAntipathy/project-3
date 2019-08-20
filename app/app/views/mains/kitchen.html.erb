@@ -1,17 +1,17 @@
 <h1>works!</h1>
 <div class="content">
 
-<% @orders.each do|x| %>
+<% @orders.each do|order| %>
 <div style="border: 1px solid red; max-width: 300px; display:flex; flex-direction:rows; justify-content: space-around">
   <div style="border: 1px solid red; max-width: 300px">
-    <p>Table Number: <%= x.table.id %></p>
-    <p>Order ID: <%= x.id %></p>
-    <% x.items.each do|y| %>
-      <p><%= y.name %></p>
+    <p>Table Number: <%= order.table.id %></p>
+    <p>Order ID: <%= order.id %></p>
+    <% order.items.each do|item| %>
+      <p><%= item.name %></p>
     <% end %>
   </div>
   <div style="display:flex; flex-direction:column;justify-content:space-between">
-    <p><%= button_tag "Complete", :onclick => "completeOrder()", :id => x.id %></p>
+    <p><%= button_tag "Complete", :onclick => "completeOrder()", :id => order.id %></p>
   </div>
 </div>
 <% end %>
@@ -27,7 +27,7 @@
       window.location.reload()
     },3000)
   }
-  function completeOrder(x){
+  function completeOrder(){
     console.log(event.target.id)
     console.log("works!")
     console.log(x)
