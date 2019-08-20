@@ -4,7 +4,7 @@
 <% @orders.each do|order| %>
 <div style="border: 1px solid red; max-width: 300px; display:flex; flex-direction:rows; justify-content: space-around">
   <div style="border: 1px solid red; max-width: 300px">
-    <p>Table Number: <%= order.table.id %></p>
+    <p>Table Number: <%= order.table_id %></p>
     <p>Order ID: <%= order.id %></p>
     <% order.items.each do|item| %>
       <p><%= item.name %></p>
@@ -28,9 +28,6 @@
     },3000)
   }
   function completeOrder(){
-    console.log(event.target.id)
-    console.log("works!")
-    console.log(x)
     Rails.ajax({
       url: "/completeorders",
       type: "get",
