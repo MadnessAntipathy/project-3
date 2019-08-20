@@ -1,0 +1,42 @@
+<h1>works!</h1>
+<div class="content">
+
+<% @orders.each do|x| %>
+<div style="border: 1px solid red; max-width: 300px; display:flex; flex-direction:rows; justify-content: space-around">
+  <div style="border: 1px solid red; max-width: 300px">
+    <p>Table Number: <%= x.table.id %></p>
+    <p>Order ID: <%= x.id %></p>
+    <% x.items.each do|y| %>
+      <p><%= y.name %></p>
+    <% end %>
+  </div>
+  <div style="display:flex; flex-direction:column;justify-content:space-between">
+    <p><%= button_tag "Complete", :onclick => "completeOrder()", :id => x.id %></p>
+  </div>
+</div>
+<% end %>
+</div>
+
+
+
+
+<script>
+  window.onload = function(){
+    setInterval(function(){
+
+      window.location.reload()
+    },3000)
+  }
+  function completeOrder(x){
+    console.log(event.target.id)
+    console.log("works!")
+    console.log(x)
+    Rails.ajax({
+      url: "/completeorders",
+      type: "get",
+      data: event.target.id,
+      success: function(data) {},
+      error: function(data) {}
+    })
+  }
+</script>

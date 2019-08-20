@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   delete '/orders/:id/items/:item_id' => 'items#destroy', as: 'order_item_delete'
 
   root "mains#index"
+  get '/kitchen' => 'mains#kitchen'
+  get '/getorders' => 'mains#orders'
+  get '/completeorders' => 'mains#complete'
   devise_for :staffs
   resources :tables
 

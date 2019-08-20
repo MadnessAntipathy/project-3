@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_094504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_sales_on_order_id"
-
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_094504) do
     t.index ["email"], name: "index_staffs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
     t.index ["staffname"], name: "index_staffs_on_staffname", unique: true
-
   end
 
   create_table "tables", force: :cascade do |t|
