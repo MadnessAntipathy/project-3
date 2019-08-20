@@ -1,0 +1,15 @@
+<h1>Total sales for the day: <%= @total %></h1>
+
+
+<table>
+	<tr>
+		<th>Transaction ID</th>
+		<th>Bill Amount</th>
+	</tr>
+	<% @sales.each do |sale| %>
+	<tr>
+		<td><%= sale.id %></td>
+		<td><%= sale.totalsale %></td>
+	</tr>
+	<% end %>
+</table>

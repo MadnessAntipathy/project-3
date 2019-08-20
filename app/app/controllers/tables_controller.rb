@@ -13,6 +13,9 @@ class TablesController < ApplicationController
     @table.save
     redirect_to root_path
   end
+  def show
+    @table = Table.find(params[:id])
+  end
 
   def show
     @table = Table.find(params[:id])
