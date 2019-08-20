@@ -1,0 +1,74 @@
+<div style="border: 1px solid red; text-align:right">
+<% if staff_session %>
+<p>Current Staff Logged In</p>
+<%= current_staff.email %>
+<%= button_to "Logout", destroy_staff_session_path, method: :delete %>
+
+<% else %>
+<%= button_to "Sign In For Staff", new_staff_session_path %>
+<% end %>
+
+</div>
+<div style="border: 1px solid red; text-align:center">
+  <div style="display:inline-block">
+    <%= button_to 'Kitchen', '/kitchen', method: :get %>
+  </div>
+  <div style="display:inline-block">
+    <%= button_tag 'Table', :onclick => "getTable()" %>
+  </div>
+  <div style="display:inline-block">
+    <%= button_to 'FOH', new_staff_session_path %>
+  </div>
+</div>
+
+<div style="border: 1px solid red">
+  <div id="content" style="height:500px; width:500px; margin:0 auto; text-align:center">
+
+    <p style="text-align:center">data from kitchen table and FOH will be rendered here</p>
+  </div>
+</div>
+
+<%= form_with scope: :table, url: tables_path, local: true do |form| %>
+  <p>
+    <%= form.submit "Create Table" %>
+  </p>
+<% end %>
+
+<script>
+  function getTable (){
+    Rails.ajax({
+      url: "/tables",
+      type: "get",
+      data: "",
+      success: function(data) {
+        console.log(data)
+        var removeList = document.querySelectorAll(".target")
+        removeList.forEach(function(item){
+          item.remove()
+        })
+        data.forEach((obj)=>{
+          console.log(obj.id)
+          var holder = document.createElement("div")
+          holder.className = "target"
+          holder.style.border = "1px solid red"
+          holder.style.width = "100px"
+          holder.style.display = "inline-block"
+          if (obj.active_status){
+            holder.style.backgroundColor = "Red"
+          }else{
+            holder.style.backgroundColor = "Green"
+          }
+          var id = document.createElement("p")
+          id.innerHTML = "Table ID: "+obj.id
+          var status = document.createElement("p")
+          status.innerHTML = "Table Status: "+obj.active_status
+          holder.appendChild(id)
+          holder.appendChild(status)
+          document.querySelector("#content").appendChild(holder)
+        })
+      },
+      error: function(data) {}
+    })
+  }
+</script>
+<!-- tables_path, method: :get, local: true, -->
