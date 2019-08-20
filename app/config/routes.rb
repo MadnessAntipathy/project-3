@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   root "mains#index"
   get '/kitchen' => 'mains#kitchen'
+  get '/table' => 'mains#table'
   get '/getorders' => 'mains#orders'
+  get '/assigntable' => 'mains#assign', as: "assign"
+  get '/releasetable' => 'mains#release', as: "release"
   get '/completeorders' => 'mains#complete'
   devise_for :staffs
   resources :tables
