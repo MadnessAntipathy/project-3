@@ -6,29 +6,12 @@
 	<h2>Table ID: <%= order.table_id %></h2>
 	<% order.items.each do |item| %>
 		<p><%= item.name %></p>
-		<a><%= link_to 'Delete', order_path(order),
+		<a><%= link_to 'Delete Item', order_item_delete_path(order, item),
 				        method: :delete,
 				        data: { confirm: 'Are you sure?' } %></a>
 	<% end %>
 
-	<%= form_with scope: :order, model: order, local: true do |form| %>
-
-		<p>
-	    <%= form.label :table_id %><br>
-	    <%= form.text_area :table_id %>
-	  </p>
-
-		<p>
-	    <%= form.label :completed %><br>
-	    <%= form.check_box :completed%>
-	  </p>
-
-	  <p>
-	    <%= form.submit %>
-	  </p>
-
-	<% end %>
-
-
-
+	<a><%= link_to 'Delete Order', order_path(order),
+				        method: :delete,
+				        data: { confirm: 'Are you sure?' } %></a>
 <% end %>

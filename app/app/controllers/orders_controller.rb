@@ -23,14 +23,9 @@ class OrdersController < ApplicationController
   def destroy
 
     @order = Order.find(params[:id])
-
-    item = @order.items.find(params[:id])
-
-    if item
-        @order.items.delete(item)
-    end
-
+    @order.destroy
     redirect_to orders_path
+
   end
 
 
