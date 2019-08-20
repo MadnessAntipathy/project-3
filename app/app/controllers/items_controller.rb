@@ -2,18 +2,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @category = Item.category
-
-    if params.has_key?(:category)
-      if(params[:category] == "starter" )
-          @items = Item.includes(:category).where(category: {'starters'})
-      else
-          @customers = Customer.all.joins(:customers_kopis).group(:customer_id,:id).order('count desc').select("customers.id,customers.name,customer_id,count(customer_id) as count")
-      end
-    else
-      # get all items
-      @items = Item.all
-    end
 
   end
 
@@ -29,6 +17,16 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def optionajax
+      p JSON.parse(params[:category])
+      cat = JSON.parse(params[:category].downcase)
+      @items = Item.where(:category => cat)
+      p @items
+      respond_to do |format|
+          format.json { render json: @items.to_json }
+      end
   end
 
 private
