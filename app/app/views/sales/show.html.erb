@@ -1,0 +1,21 @@
+<h1>Transaction: <%= @sale.id %></h1>
+
+
+	<table>
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+	<% @qty.each do |qty| %>
+	<tr>
+		<td><%= qty.item.name  %></td>
+		<td><%= qty.item_quantity %></td>
+		<td><%= qty.item.price %></td>
+	</tr>
+	<% end %>
+</table>
+
+
+
+<h2>Bill Amount: <%= @sale.totalsale %></h2>
