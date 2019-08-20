@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get '/items/optionajax' => 'items#optionajax'
+  resources :items
+
   get '/orders' => 'orders#index', as: 'orders'
   get '/orders/:id' => 'orders#show' , as: 'order'
   patch '/orders/:id' => 'orders#update'
