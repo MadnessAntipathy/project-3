@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   devise_for :staffs
   resources :tables
 
+  get '/reports' => 'reports#index', as: 'reports'
+
 
 end
