@@ -24,13 +24,9 @@ default: &default
 development:
   <<: *default
   database: app_development
-<<<<<<< HEAD
 
-=======
-  username: marcus
 
-  password: password
->>>>>>> 987c8861dc9213de3d77c5773a75b8f931664d8c
+
 
 
   # The specified database role being used to connect to postgres.
