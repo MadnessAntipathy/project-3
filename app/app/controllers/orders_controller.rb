@@ -39,16 +39,19 @@ class OrdersController < ApplicationController
     # table_id:order_params[:table_id],item_ids:order_params[:item_ids],item_quantity:order_params[:item_quantity]
     @order = Order.new(table_id: order_params[:table_id],item_ids: order_params[:item_ids])
     @order.save
-    p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    p order_params[:item_ids][0]
+
+
 
     (0...order_params[:item_ids].size).each do |i|
       purchase = Purchase.new(order_id: @order.id, item_id: order_params[:item_ids][i],item_quantity: order_params[:item_quantities][i])
       purchase.save
     end
 
-    redirect_to orders_path
+    
+
+    # redirect_to orders_path
+    redirect_to "/carts/#{order_params[:table_id]}"
+
   end
 
 

@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   def index
     session[:table] = params[:format] || session[:table]
     @items = Item.all
+
   end
 
   def new

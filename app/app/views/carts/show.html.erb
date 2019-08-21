@@ -1,0 +1,8 @@
+<h1>All Orders for Table <%= @table.id %></h1>
+<% @table.orders.each do |order| %>
+  <p>Order ID: <%= order.id %></p>
+  <% order.items.each do |item| %>
+    <p>Item Name: <%= item.name %></p>
+    <p>Item Price: $<%= item.price %></p>
+  <% end %>
+<% end %>
