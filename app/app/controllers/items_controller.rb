@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    puts '``````````````````````````````````````````````````````````````'
     puts params[:category]
     if params.has_key?(:category)
       if(params[:category] == "drinks" )

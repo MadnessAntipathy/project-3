@@ -1,5 +1,5 @@
 
-  <strong>CATEGORY</strong>
+  <strong><%= @items.first.category %></strong>
 
   <% @items.each do |item| %>
 
@@ -13,6 +13,8 @@
 			    <%= f.submit "Submit" %>
 				<% end %>
   <% end %>
+
+  <%# button_to "Send to Kitchen", "/order/new", method: :post %>
 
 
 <%= link_to 'Back', root_path %>

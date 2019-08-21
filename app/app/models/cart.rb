@@ -1,3 +1,5 @@
 class Cart < ApplicationRecord
-  has_and_belongs_to_many :items
+  belongs_to :item
+  # belongs_to :order
+
 end

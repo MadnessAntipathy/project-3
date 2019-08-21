@@ -4,6 +4,7 @@ class Carts < ActiveRecord::Migration[5.2]
       t.references :table
       t.references :item
       t.integer :item_quantity
+
       t.timestamps
     end
   end
