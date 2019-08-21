@@ -9,6 +9,9 @@
     <p>Order ID: <%= order.id %></p>
     <% order.items.each do|item| %>
       <p><%= item.name %></p>
+      <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+      <p>Quantity: <%= x.item_quantity %></p>
+      <% end %>
     <% end %>
   </div>
   <div style="display:flex; flex-direction:column;justify-content:space-between">
