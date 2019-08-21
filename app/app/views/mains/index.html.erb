@@ -3,7 +3,6 @@
 <p>Current Staff Logged In</p>
 <%= current_staff.email %>
 <%= button_to "Logout", destroy_staff_session_path, method: :delete %>
-
 <% else %>
 <%= button_to "Sign In For Staff", new_staff_session_path %>
 <% end %>
@@ -17,22 +16,17 @@
     <%= button_to 'View Tables', '/table', method: :get %>
   </div>
   <div style="display:inline-block">
-    <%= button_to 'View Reports', new_staff_session_path %>
+    <%= button_to 'View Reports', '/reports' %>
   </div>
 </div>
 
 <div style="border: 1px solid red">
   <div id="content" style="height:500px; width:500px; margin:0 auto; text-align:center">
-
     <p style="text-align:center">data from kitchen table and FOH will be rendered here</p>
   </div>
 </div>
 
-<%= form_with scope: :table, url: tables_path, local: true do |form| %>
-  <p>
-    <%= form.submit "Create Table" %>
-  </p>
-<% end %>
+
 
 <script>
   function getTable (){
