@@ -40,4 +40,9 @@ class MainsController < ApplicationController
     @table.save
     redirect_to @table
   end
+  def destroy
+    @tables = Table.all
+    @tables.destroy_all
+    redirect_to '/table'
+  end
 end

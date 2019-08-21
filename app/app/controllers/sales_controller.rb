@@ -10,3 +10,4 @@ class SalesController < ApplicationController
     p @orders
     p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
+end
