@@ -4,6 +4,12 @@
   <% order.items.each do |item| %>
     <p>Item Name: <%= item.name %></p>
     <p>Item Price: $<%= item.price %></p>
+    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+    <p>Item Quantity: <%= x.item_quantity %></p>
+    <% end %>
+
+
+
   <% end %>
 <% end %>
 

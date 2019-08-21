@@ -5,6 +5,7 @@ class MainsController < ApplicationController
   end
   def kitchen
     @orders = Order.where(completed: nil)
+    @purchases = Purchase.all
   end
   def orders
     puts "working here~"
