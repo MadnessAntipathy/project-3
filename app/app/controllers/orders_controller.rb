@@ -28,11 +28,23 @@ class OrdersController < ApplicationController
 
   end
 
+  def submit
+    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    p order_params[:table_id]
+    p order_params[:item_ids]
+    p order_params[:item_quantity]
+    p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    # table_id:order_params[:table_id],item_ids:order_params[:item_ids],item_quantity:order_params[:item_quantity]
+    @order = Order.new(table_id:order_params[table_id],item_ids:order_params[item_ids])
+    @order.save
+    redirect_to orders_path
+  end
+
 
 private
 
   def order_params
-    params.require(:order).permit(:completed, :table_id)
+    params.require(:order).permit(:table_id, :item_ids=>[], :item_quantities=>[])
   end
 
 

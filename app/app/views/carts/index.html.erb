@@ -16,6 +16,23 @@
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
-
-
 </table>
+
+
+
+<%= form_with scope: :order, url: submit_path, local: true do |form| %>
+  <p>
+    <%= form.label :table_id %><br>
+    <%= form.hidden_field :table_id, :value => session[:table] %>
+  </p>
+  <p>
+    <% @carts.each do |cart| %>
+    <%= form.hidden_field :item_ids,:multiple => true, :value => cart.item.id %>
+    <%= form.hidden_field :item_quantities,:multiple => true, :value => cart.item_quantity %>
+    <% end %>
+
+  </p>
+  <p>
+    <%= form.submit "Submit order" %>
+  </p>
+<% end %>
