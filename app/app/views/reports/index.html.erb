@@ -1,15 +1,17 @@
 <h1>Total sales for the day: <%= @total %></h1>
-
+<%= button_to 'Back to main', root_path, method: :get %>
 
 <table>
 	<tr>
 		<th>Transaction ID</th>
 		<th>Bill Amount</th>
+		<th>Action</th>
 	</tr>
 	<% @sales.each do |sale| %>
 	<tr>
 		<td><%= sale.id %></td>
 		<td><%= sale.totalsale %></td>
+		<td><a><%= link_to 'View', sale_path(sale) %></a></td>
 	</tr>
 	<% end %>
 </table>

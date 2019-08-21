@@ -24,7 +24,7 @@ class MainsController < ApplicationController
     @table = Table.find(params[:format])
     @table.active_status = "true"
     @table.save
-    redirect_to @table
+    redirect_to items_path(params[:format])
   end
   def release
     @table = Table.find(params[:format])
@@ -37,8 +37,12 @@ class MainsController < ApplicationController
       order.table_id = nil
       order.save
     end
-    # orders.destroy
     @table.save
     redirect_to @table
+  end
+  def destroy
+    @tables = Table.all
+    @tables.destroy_all
+    redirect_to '/table'
   end
 end

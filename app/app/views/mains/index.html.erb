@@ -3,36 +3,33 @@
 <p>Current Staff Logged In</p>
 <%= current_staff.email %>
 <%= button_to "Logout", destroy_staff_session_path, method: :delete %>
-
 <% else %>
 <%= button_to "Sign In For Staff", new_staff_session_path %>
 <% end %>
+</div>
 
-</div>
-<div style="border: 1px solid red; text-align:center">
-  <div style="display:inline-block">
-    <%= button_to 'Kitchen', '/kitchen', method: :get %>
-  </div>
-  <div style="display:inline-block">
-    <%= button_to 'Table', '/table', method: :get %>
-  </div>
-  <div style="display:inline-block">
-    <%= button_to 'FOH', new_staff_session_path %>
-  </div>
-</div>
 
 <div style="border: 1px solid red">
-  <div id="content" style="height:500px; width:500px; margin:0 auto; text-align:center">
-
-    <p style="text-align:center">data from kitchen table and FOH will be rendered here</p>
+  <div id="content" style="height:500px; margin:0 auto; text-align:center; border: 1px solid green; display:flex; flex-direction:row; justify-content:center">
+    <a href='/kitchen'>
+    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:red">
+      <p>View Kitchen Orders</p>
+    </div>
+    </a>
+    <a href="/table">
+    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:green">
+      <p>View Tables</p>
+    </div>
+    </a>
+    <a href="/reports">
+    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:blue">
+      <p>View Reports</p>
+    </div>
+    </a>
   </div>
 </div>
 
-<%= form_with scope: :table, url: tables_path, local: true do |form| %>
-  <p>
-    <%= form.submit "Create Table" %>
-  </p>
-<% end %>
+
 
 <script>
   function getTable (){

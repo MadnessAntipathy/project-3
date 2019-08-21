@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    session[:table] = params[:format]
     @items = Item.all
   end
 
@@ -80,7 +81,9 @@ private
   def item_params
     params.require(:item).permit(:name, :category, :price, :picture)
   end
+
   def cart_params
     params.require(:cart).permit(:table_id, :item_id, :item_quantity)
   end
 end
+

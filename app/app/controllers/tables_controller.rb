@@ -11,14 +11,16 @@ class TablesController < ApplicationController
     puts "~~~~~~~~~~~~~~~~~~~~~~~"
     @table = Table.new
     @table.save
-    redirect_to root_path
+    redirect_to '/table'
   end
   def show
     @table = Table.find(params[:id])
+  end
+  def destroy
+    @table = Table.find(params[:format])
+    @table.destroy
+    redirect_to '/table'
   end
 
-  def show
-    @table = Table.find(params[:id])
-  end
 
 end

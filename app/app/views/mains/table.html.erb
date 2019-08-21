@@ -12,10 +12,24 @@
 
 </div>
 
+<%= form_with scope: :table, url: tables_path, local: true do |form| %>
+  <p>
+    <%= form.submit "Create Table" %>
+  </p>
+<% end %>
+
+<%= form_with scope: :table, url: destroyall_path, local: true do |form| %>
+  <p>
+    <%= form.submit "Delete All Tables" %>
+  </p>
+<% end %>
+
+<%= button_to 'Back to main', root_path, method: :get %>
+
 <script>
   window.onload = function(){
-    // setInterval(function(){
-    //   window.location.reload()
-    // },3000)
+    setInterval(function(){
+      window.location.reload()
+    },3000)
   }
 </script>

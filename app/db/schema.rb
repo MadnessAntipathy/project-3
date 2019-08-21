@@ -48,11 +48,10 @@ ActiveRecord::Schema.define(version: 2020_08_19_094507) do
 
   create_table "orders", force: :cascade do |t|
     t.boolean "completed"
-    t.bigint "table_id"
+    t.integer "table"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sales_id"
-    t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
   create_table "reports", force: :cascade do |t|
