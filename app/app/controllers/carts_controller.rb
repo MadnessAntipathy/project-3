@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def index
-    @carts = Cart.where(:table_id => 2)
+    @carts = Cart.where(:table_id => session[:table])
 
   end
 

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/orders/:id' => 'orders#show' , as: 'order'
   patch '/orders/:id' => 'orders#update'
   delete '/orders/:id' => 'orders#destroy'
+  post '/submit' => 'orders#submit', as: "submit"
+
 
   get '/orders/:id/items' => 'items#show' , as: 'order_items'
   delete '/orders/:id/items/:item_id' => 'items#destroy', as: 'order_item_delete'
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
   get '/completeorders' => 'mains#complete'
   post '/destroyalltables' => 'mains#destroy', as: "destroyall"
   delete '/deletetable' => 'tables#destroy', as: "deletetable"
+
   devise_for :staffs
   resources :tables
 
