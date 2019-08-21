@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
 
-  get '/items/optionajax' => 'items#optionajax'
-  resources :items
+  post '/items' => 'items#cart', as: 'add_cart'
+  get '/items' => 'items#index', as: 'items'
+  get '/items/:category' => 'items#show'
+
+  get '/carts' => 'carts#index', as: 'carts'
 
   get '/orders' => 'orders#index', as: 'orders'
   get '/orders/:id' => 'orders#show' , as: 'order'
