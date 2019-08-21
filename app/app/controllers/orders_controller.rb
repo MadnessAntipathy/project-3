@@ -34,8 +34,10 @@ class OrdersController < ApplicationController
     p order_params[:item_ids]
     p order_params[:item_quantity]
     p '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    cart = Cart.where(table_id:order_params[:table_id])
+    cart.destroy_all
     # table_id:order_params[:table_id],item_ids:order_params[:item_ids],item_quantity:order_params[:item_quantity]
-    @order = Order.new(table_id:order_params[table_id],item_ids:order_params[item_ids])
+    @order = Order.new(table_id:order_params[:table_id],item_ids:order_params[:item_ids])
     @order.save
     redirect_to orders_path
   end
