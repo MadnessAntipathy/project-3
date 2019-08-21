@@ -16,9 +16,11 @@ class TablesController < ApplicationController
   def show
     @table = Table.find(params[:id])
   end
-
-  def show
-    @table = Table.find(params[:id])
+  def destroy
+    @table = Table.find(params[:format])
+    @table.destroy
+    redirect_to '/table'
   end
+
 
 end

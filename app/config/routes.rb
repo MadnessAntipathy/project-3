@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/assigntable' => 'mains#assign', as: "assign"
   get '/releasetable' => 'mains#release', as: "release"
   get '/completeorders' => 'mains#complete'
+  post '/destroyalltables' => 'mains#destroy', as: "destroyall"
+  delete '/deletetable' => 'tables#destroy', as: "deletetable"
   devise_for :staffs
   resources :tables
 
