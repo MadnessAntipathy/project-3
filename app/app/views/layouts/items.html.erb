@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+		<%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between flex-nowrap flex-row">
+  		<a href="/items" class="navbar-brand">Res Logo</a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		    <div class="collapse navbar-collapse">
+		    	<ul class="navbar-nav mr-auto text-center">
+		    		<li class="nav-item">
+		        	<a class="nav-link" href='/items/starter'>Starters</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href='/items/mains'>Mains</a>
+		      	</li>
+		      	<li class="nav-item">
+			        <a class="nav-link" href="/items/desserts">Desserts</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/items/sides">Sides</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/items/drinks">Drinks</a>
+			      </li>
+		      </ul>
+		      <ul class="navbar-nav my-2 my-lg-0 flex-row float-right">
+	            <li class="nav-item mr-sm-2"><a class="nav-link pr-3" href="/carts">Cart</a></li>
+	            <li class="nav-item my-2 my-sm-0"><%= link_to "All Orders", "/carts/#{session[:table]}", class: "nav-link pr-3" %></li>
+	        </ul>
+		    </div>
+		</nav>
+
+
+    <%= yield %>
+
+  </body>
+</html>

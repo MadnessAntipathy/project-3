@@ -1,20 +1,24 @@
-
-  <strong><%= @items.first.category %></strong>
-
-  <% @items.each do |item| %>
-
-			  <p><%= item.name %></p>
-		    <p><%= item.price %></p>
-		    <p><%= image_tag (item.picture) %></p>
-		    <%= form_with scope: :cart,  :url => add_cart_path, local: true  do |f| %>
-		    	<%= f.hidden_field :table_id, :value => session[:table] %>
-		    	<%= f.hidden_field :item_id, :value => item.id %>
-			    <p><%= f.number_field :item_quantity, min: 0, max: 10 %>
-			    <%= f.submit "Submit" %>
-				<% end %>
-  <% end %>
-
-  <%# button_to "Send to Kitchen", "/order/new", method: :post %>
-
-
-<%= link_to 'Back', root_path %>
+<h1><%= @items.first.category.titleize %></h1>
+<div class="main-container">
+	<div class="row">
+		<% @items.each do |item| %>
+			<div class="col">
+					<div class="card" style="width: 18rem;">
+						<%= image_tag (item.picture), class:"card-img-top" %>
+					  <div class="card-body">
+					    <h5 class="card-title"><%= item.name %></h5>
+					    <p class="card-text">$<%= item.price %></p>
+					    <p>Qty:
+					    	<%= form_with scope: :cart,  :url => add_cart_path, local: true  do |f| %>
+							    	<%= f.hidden_field :table_id, :value => session[:table] %>
+							    	<%= f.hidden_field :item_id, :value => item.id %>
+								    <%= f.number_field :item_quantity, min: 0, max: 10 %>
+								    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+								<% end %>
+					    </p>
+				    </div>
+				  </div>
+				</div>
+		<% end %>
+	</div>
+</div>

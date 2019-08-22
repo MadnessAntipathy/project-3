@@ -1,21 +1,25 @@
-<table>
+<table class="table table-striped">
+	<thead>
   <tr>
-  	<th>Item</th>
-    <th>Qty</th>
-    <th>Price</th>
-    <th></th>
+  	<th scope="col">Item</th>
+    <th scope="col">Qty</th>
+    <th scope="col">Price</th>
+    <th scope="col"></th>
   </tr>
+</thead>
+<tbody>
 
   <% @carts.each do |cart| %>
     <tr>
-    	  <td><%= cart.item.name %></td>
+    	  <td scope="row"><%= cart.item.name %></td>
         <td><%= cart.item_quantity %></td>
         <td><%= cart.item.price * cart.item_quantity %></td>
-        <td><%= link_to 'Destroy', delete_cart_path(cart),
+        <td><%= link_to 'Delete Item', delete_cart_path(cart),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+              data: { confirm: 'Are you sure?' }, class:"btn btn-warning" %></td>
     </tr>
   <% end %>
+</tbody>
 </table>
 
 
@@ -33,6 +37,8 @@
 
   </p>
   <p>
-    <%= form.submit "Submit order" %>
+    <%= form.submit "Submit order", class:"btn btn-outline-success" %>
   </p>
 <% end %>
+
+<%= link_to 'Back', items_path, class:"btn btn-secondary" %>

@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
+  layout "items"
   def index
     session[:table] = params[:format] || session[:table]
     @items = Item.all
-
   end
 
   def new
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    puts params[:category]
+    puts params
     if params.has_key?(:category)
       if(params[:category] == "drinks" )
           @items = Item.where(:category => 'drinks')
