@@ -7,7 +7,7 @@
 						<%= image_tag (item.picture), class:"card-img-top" %>
 					  <div class="card-body">
 					    <h5 class="card-title"><%= item.name %></h5>
-					    <p class="card-text">$<%= item.price %></p>
+					    <p class="card-text">$<%= '%.2f' % item.price %></p>
 					    <div class="form-row">
 						    <div class="col">Qty:</div>
 						  </div>
