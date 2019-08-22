@@ -22,6 +22,14 @@ class TablesController < ApplicationController
     @table.destroy
     redirect_to '/table'
   end
-
+  def addnotification
+    @addnotification = Notification.new(table_id: request.query_string.to_i)
+    @addnotification.save
+  end
+  def notifications
+    @notifications = Notification.where('created_at >= :ten_seconds_ago', :ten_seconds_ago => Time.now - 10.seconds)
+    Notification.where('created_at <= :ten_seconds_ago', :ten_seconds_ago => Time.now - 10.seconds).destroy_all
+    render json: @notifications
+  end
 
 end
