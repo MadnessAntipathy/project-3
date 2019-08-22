@@ -1,4 +1,5 @@
 <h1>All Orders for Table <%= @table.id %></h1>
+<% allitem = 0 %>
 <% tablesubtotal = 0 %>
 <% gst = 0 %>
 <% tabletotal = 0 %>
@@ -17,10 +18,10 @@
 				<% order.items.each do |item| %>
 					  	<tr>
 					    <td scope="row"><%= item.name %></td>
-					    <td>$<%= item.price %></td>
+					    <td>$<%= '%.2f' % item.price %></td>
 					    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
 					     <td> <%= x.item_quantity %></td>
-					     <td>$<%= item.price * x.item_quantity %></td>
+					     <td><% allitem = item.price * x.item_quantity %>$<%= '%.2f' % allitem %></td>
 					     <% tablesubtotal += item.price * x.item_quantity %>
 					     <% end %>
 					   </tr>
