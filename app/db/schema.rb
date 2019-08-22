@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_094509) do
+ActiveRecord::Schema.define(version: 2020_08_19_094510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 2020_08_19_094509) do
     t.integer "item_quantity"
     t.index ["item_id"], name: "index_items_orders_on_item_id"
     t.index ["order_id"], name: "index_items_orders_on_order_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "table_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|

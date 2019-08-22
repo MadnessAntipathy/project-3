@@ -35,5 +35,7 @@ Rails.application.routes.draw do
   get '/reports' => 'reports#index', as: 'reports'
   get '/sales/:id' => 'sales#show' , as: 'sale'
 
+  get '/notifications' => 'tables#notifications'
+  get '/addnotifications' => 'tables#addnotification'
 
 end

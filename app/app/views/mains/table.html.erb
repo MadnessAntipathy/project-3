@@ -16,7 +16,7 @@
 
 					<% if table.active_status? %>
 
-						<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+						<div class="card text-white bg-danger mb-3" id=<%= table.id%> style="max-width: 20rem;">
 						  <div class="card-header">
 						  	<h4>Table <%= table.id%></h4>
 						  </div>
@@ -28,7 +28,7 @@
 
 					<% else %>
 
-						<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+						<div class="card text-white bg-success mb-3" id=<%= table.id%> style="max-width: 20rem;">
 						  <div class="card-header">
 						  	<h4>Table <%= table.id%></h4>
 						  </div>
@@ -63,13 +63,32 @@
 
 </div>
 
+<div id="notification-area"><div>
 
 
 
 <script>
   window.onload = function(){
     setInterval(function(){
-      window.location.reload()
+			Rails.ajax({
+			  url: "/notifications",
+			  type: "get",
+			  data: "",
+			  success: function(data) {
+					while (document.querySelector("#notification-area").firstChild){
+						document.querySelector("#notification-area").removeChild(document.querySelector("#notification-area").firstChild)
+					}
+					data.forEach((obj)=>{
+						console.log("TableID: "+obj.table_id)
+						var p = document.createElement('p')
+						p.innerHTML = "TableID: "+obj.table_id
+						document.querySelector("#notification-area").appendChild(p)
+					})
+				},
+			  error: function(data) {}
+			})
+			// Notification.where('created_at >= :ten_seconds_ago', :ten_seconds_ago => Time.now - 10.seconds)
+      // window.location.reload()
     },3000)
   }
 </script>
