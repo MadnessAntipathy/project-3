@@ -42,3 +42,20 @@
   text-shadow:2px 2px #333;
   padding: 10px;
 }
+
+.staff-name {
+	margin-top: auto;
+	margin-right: 5px;
+	color: white;
+}
+
+a.table-card {
+	text-decoration: none !important;
+}
+
+a.table-card:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: black
+ }
