@@ -51,11 +51,10 @@
 	<% else %>
 
 		<div class="col-12 text-center">
-			<%= button_to 'Assign Table',assign_path(@table), method: :get %>
+			<%= button_to 'Assign Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post %>
 			<%= button_to 'Delete Table' ,deletetable_path(@table), method: :delete %>
 		</div>
 
 	<% end %>
 
 </div>
-
