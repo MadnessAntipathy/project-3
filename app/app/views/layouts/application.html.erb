@@ -10,6 +10,26 @@
   </head>
 
   <body>
+  	<nav class="navbar navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
+		    <div class="container">
+		        <a href="/" class="navbar-brand float-left">Res Logo</a>
+		        <a href='/kitchen'>Kitchen Orders</a>
+		        <a href='/table'>Table</a>
+		        <a href="/reports">Reports</a>
+		        <ul class="nav navbar-nav flex-row float-right">
+		        	<% if staff_session %>
+								<p>Current Staff Logged In</p>
+								<%= current_staff.email %>
+								<%= button_to "Logout", destroy_staff_session_path, method: :delete %>
+							<% else %>
+		            <li class="nav-item"><a class="nav-link pr-3" href=<%= new_staff_session_path%>>Staff Login</a></li>
+		          <% end %>
+		        </ul>
+		    </div>
+		</nav>
+
+
     <%= yield %>
+
   </body>
 </html>

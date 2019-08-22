@@ -1,33 +1,14 @@
-<div style="border: 1px solid red; text-align:right">
-<% if staff_session %>
-<p>Current Staff Logged In</p>
-<%= current_staff.email %>
-<%= button_to "Logout", destroy_staff_session_path, method: :delete %>
-<% else %>
-<%= button_to "Sign In For Staff", new_staff_session_path %>
-<% end %>
-</div>
 
-
-<div style="border: 1px solid red">
-  <div id="content" style="height:500px; margin:0 auto; text-align:center; border: 1px solid green; display:flex; flex-direction:row; justify-content:center">
-    <a href='/kitchen'>
-    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:red">
-      <p>View Kitchen Orders</p>
+<section class="bgimage">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h5>Restaurant Name</h5>
+        <p>Our restaurant ordering app</p>
+      </div>
     </div>
-    </a>
-    <a href="/table">
-    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:green">
-      <p>View Tables</p>
-    </div>
-    </a>
-    <a href="/reports">
-    <div style="display:flex; flex-direction:column;justify-content:center; height:400px; width:300px; border: 1px solid red; background-color:blue">
-      <p>View Reports</p>
-    </div>
-    </a>
   </div>
-</div>
+</section>
 
 
 

@@ -1,17 +1,42 @@
-<h1>Total sales for the day: <%= @total %></h1>
-<%= button_to 'Back to main', root_path, method: :get %>
 
-<table>
-	<tr>
-		<th>Transaction ID</th>
-		<th>Bill Amount</th>
-		<th>Action</th>
-	</tr>
-	<% @sales.each do |sale| %>
-	<tr>
-		<td><%= sale.id %></td>
-		<td><%= sale.totalsale %></td>
-		<td><a><%= link_to 'View', sale_path(sale) %></a></td>
-	</tr>
-	<% end %>
-</table>
+<div class="container">
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<h1>Total sales for the day</h1>
+			<h3><%= @total %></h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<table class="table">
+  			<thead class="thead-dark">
+					<tr>
+						<th>Transaction ID</th>
+						<th>Bill Amount</th>
+						<th>Transaction Date</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @sales.each do |sale| %>
+					<tr>
+						<td><%= sale.id %></td>
+						<td><%= sale.totalsale %></td>
+						<td><%= sale.created_at %></td>
+						<td><a><%= link_to 'View', sale_path(sale) %></a></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<a class="btn btn-primary btn-lg" href=<%=root_path%>>Back to main</a>
+		</div>
+	</div>
+
+</div>

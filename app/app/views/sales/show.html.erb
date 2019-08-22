@@ -1,22 +1,38 @@
-<h1>Transaction: <%= @sale.id %></h1>
+<div class="container">
 
-	<table>
-	<tr>
-		<th>Item</th>
-		<th>Quantity</th>
-		<th>Price</th>
-	</tr>
+	<div class="row">
+		<div class="col-12 text-center">
+			<h2>Transaction ID: <%= @sale.id %></h2>
+			<h5><%= @sale.created_at %></h5>
 
-	<% @qty.each do |qty| %>
-	<tr>
-		<td><%= qty.item.name  %></td>
-		<td><%= qty.item_quantity %></td>
-		<td><%= qty.item.price %></td>
-	</tr>
-	<% end %>
-</table>
+			<table class="table">
+  			<thead class="thead-dark">
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</tr>
+				</thead>
 
+				<tbody>
+				<% @qty.each do |qty| %>
+					<tr>
+						<td><%= qty.item.name  %></td>
+						<td><%= qty.item_quantity %></td>
+						<td><%= qty.item.price %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
 
+			<h2>Bill Amount: <%= @sale.totalsale %></h2>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-12 text-center">
+			<a class="btn btn-primary btn-lg" href=<%=root_path%>>Back to main</a>
+		</div>
+	</div>
 
-<h2>Bill Amount: <%= @sale.totalsale %></h2>
+</div>
