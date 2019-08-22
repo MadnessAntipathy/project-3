@@ -48,3 +48,14 @@
 	margin-right: 5px;
 	color: white;
 }
+
+a.table-card {
+	text-decoration: none !important;
+}
+
+a.table-card:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: black
+ }
