@@ -1,8 +1,28 @@
 <h1>All Orders for Table <%= @table.id %></h1>
+<% tablesubtotal = 0 %>
+<% gst = 0 %>
+<% tabletotal = 0 %>
+
+
 <% @table.orders.each do |order| %>
-  <p>Order ID: <%= order.id %></p>
+  <p><i>Order ID: <%= order.id %></i></p>
   <% order.items.each do |item| %>
     <p>Item Name: <%= item.name %></p>
     <p>Item Price: $<%= item.price %></p>
+    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+     <p>Quantity: <%= x.item_quantity %></p>
+     <p>Subtotal for this dish: <%= item.price * x.item_quantity %></p>
+     <% tablesubtotal += item.price * x.item_quantity %>
+     <% end %>
   <% end %>
 <% end %>
+
+<hr />
+<p>Subtotal for this table: <%= '%.2f' % tablesubtotal %></p>
+<% gst = tablesubtotal * 0.07 %>
+<p>GST: <%= '%.2f' % gst %><p>
+<% tabletotal = tablesubtotal + gst %>
+<p><b>Total for this table: <%= '%.2f' % tabletotal %></b></p>
+
+
+<%= link_to 'Back', items_path %>

@@ -6,6 +6,7 @@ class CartsController < ApplicationController
 
   def show
     @table = Table.find(params[:id])
+    @purchases = Purchase.all
   end
 
   def destroy
