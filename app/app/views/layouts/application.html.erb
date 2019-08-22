@@ -10,23 +10,26 @@
   </head>
 
   <body>
-  	<nav class="navbar navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
-		    <div class="container">
-		        <a href="/" class="navbar-brand float-left">Res Logo</a>
+  	<nav class="navbar nav-tabs navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
+
+		        <a href="/" class="navbar-brand float-left"><%= image_tag image_url('taco.png'), :class => "nav-logo"  %>GA Cafe</a>
             <% if staff_signed_in? %>
-		        <a href='/kitchen'>Kitchen Orders</a>
-		        <a href='/table'>Table</a>
-		        <a href="/reports">Reports</a>
+
+		        <a href='/kitchen' class="nav-item nav-link nav-text"><%= image_tag image_url('kitchen-icon.png'), :class => "nav-icon"%>Kitchen Orders</a>
+		        <a href='/table' class="nav-item nav-link nav-text"><%= image_tag image_url('table-icon.png'), :class => "nav-icon"%>Tables</a>
+		        <a href="/reports" class="nav-item nav-link nav-text"><%= image_tag image_url('report-icon.png'), :class => "nav-icon"%>Reports</a>
+
             <% end %>
+
 		        <ul class="nav navbar-nav flex-row float-right">
 		        	<% if staff_session %>
+
 								<li class="staff-name"><%= current_staff.email %></li>
-								<li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-primary btn-sm"%></li>
+					      <li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-primary btn-sm"%></li>
 							<% else %>
 		            <li class="nav-item"><a class="btn btn-primary btn-sm" href=<%= new_staff_session_path%>>Staff Login</a></li>
 		          <% end %>
 		        </ul>
-		    </div>
 		</nav>
 
 

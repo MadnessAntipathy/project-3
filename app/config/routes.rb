@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   root "mains#index"
   get '/kitchen' => 'mains#kitchen'
-  get '/table' => 'mains#table'
+  get '/table' => 'mains#table', as: "table"
   get '/getorders' => 'mains#orders'
   post '/assigntable' => 'mains#assign', as: "assign"
   get '/releasetable' => 'mains#release', as: "release"

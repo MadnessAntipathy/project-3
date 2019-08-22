@@ -29,9 +29,9 @@
 					      <% end %>
 					      <td>$<%= item.price %></td>
 					      <% if order.completed %>
-					      <td>Completed</td>
+					      <td><span class="badge badge-pill badge-success">Completed</span></td>
 					      <% else %>
-					      <td>Pending</td>
+					      <td><span class="badge badge-pill badge-danger">Pending</span></td>
 					      <% end %>
 					    </tr>
 					  <% end %>
