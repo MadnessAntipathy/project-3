@@ -7,16 +7,137 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
 		<%= javascript_include_tag 'application' %>
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   </head>
 
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between flex-nowrap flex-row">
-  		<a href="/items" class="navbar-brand">Res Logo</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
 
-		    <div class="collapse navbar-collapse">
+		<div class="page-wrapper chiller-theme toggled">
+		  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+		    <i class="fas fa-bars"></i>
+		  </a>
+		  <nav id="sidebar" class="sidebar-wrapper">
+		    <div class="sidebar-content">
+		      <div class="sidebar-brand">
+		        <a><button onclick=assistance(<%= session[:table] %>) id="assistance" class="btn btn-primary btn-sm"> Call for assistance </button></a>
+		        <div id="close-sidebar">
+		          <i class="fas fa-times"></i>
+		        </div>
+		      </div>
+
+		      <div class="sidebar-header">
+		      		<div class="row">
+		      			<div class="col-3">
+		      				<button type="button" class="btn btn-outline-primary"><a href="/carts" class="menu-nav-text">Cart</a></button>
+		      			</div>
+
+		      			<div class="col-9">
+		      				<button type="button" class="btn btn-outline-primary">
+		      				<%= link_to "View Bill", "/carts/#{session[:table]}", class: "menu-nav-text" %>
+		      				</button>
+		      			</div>
+		      		</div>
+		      </div>
+		      <!-- sidebar-header  -->
+
+		      <div class="sidebar-search">
+		        <div>
+		          <div class="input-group">
+		            <input type="text" class="form-control search-menu" placeholder="Search...">
+		            <div class="input-group-append">
+		              <span class="input-group-text">
+		                <i class="fa fa-search" aria-hidden="true"></i>
+		              </span>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		      <!-- sidebar-search  -->
+
+		      <div class="sidebar-menu">
+		        <ul>
+		          <li class="header-menu">
+		            <span>Browse By</span>
+		          </li>
+		          <li>
+		            <a href='/items'>
+		            	<%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">All Items</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/starter'>
+		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">Starters</span>
+		              <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/mains'>
+		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">Mains</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/sides'>
+		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">Sides</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/desserts'>
+		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">Desserts</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/drinks'>
+		            	<%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">Beverages</span>
+		            </a>
+		          </li>
+		        </ul>
+		      </div>
+		      <!-- sidebar-menu  -->
+		    </div>
+		    <!-- sidebar-content  -->
+
+		    <div class="sidebar-footer">
+
+		    </div>
+		  </nav>
+
+
+
+
+
+    <%= yield %>
+
+  </body>
+</html>
+
+
+<script>
+  function assistance(id){
+
+    Rails.ajax({
+      url: "/addnotifications",
+      type: "get",
+      data: id,
+      dataType: 'json',
+      success: function(data) {},
+      error: function(data) {}
+    })
+  }
+</script>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between flex-nowrap flex-row">
+  		<a href="/items" class="navbar-brand">Res Logo</a>
+
+
 		    	<ul class="navbar-nav mr-auto text-center">
 		    		<li class="nav-item">
 		        	<a class="nav-link" href='/items/starter'>Starters</a>
@@ -41,27 +162,25 @@
 	            <li class="nav-item mr-sm-2"><a class="nav-link pr-3" href="/carts">Cart</a></li>
 	            <li class="nav-item my-2 my-sm-0"><%= link_to "All Orders", "/carts/#{session[:table]}", class: "nav-link pr-3" %></li>
 	        </ul>
-		    </div>
-		</nav>
+
+		</nav> -->
 
 
 
-    <%= yield %>
-
-  </body>
-</html>
 
 
-<script>
-  function assistance(id){
-
-    Rails.ajax({
-      url: "/addnotifications",
-      type: "get",
-      data: id,
-      dataType: 'json',
-      success: function(data) {},
-      error: function(data) {}
-    })
-  }
-</script>
+		<!-- under div sidebar header -->
+		<!-- <div class="user-pic">
+		          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+		            alt="User picture">
+		        </div>
+		        <div class="user-info">
+		          <span class="user-name">Jhon
+		            <strong>Smith</strong>
+		          </span>
+		          <span class="user-role">Administrator</span>
+		          <span class="user-status">
+		            <i class="fa fa-circle"></i>
+		            <span>Online</span>
+		          </span>
+		        </div> -->
