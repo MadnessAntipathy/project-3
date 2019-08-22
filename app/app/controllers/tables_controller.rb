@@ -15,6 +15,7 @@ class TablesController < ApplicationController
   end
   def show
     @table = Table.find(params[:id])
+    @purchases = Purchase.all
   end
   def destroy
     @table = Table.find(params[:format])

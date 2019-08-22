@@ -1,4 +1,6 @@
 <h1>All items</h1>
+<% puts "////////////////////////" %>
+<% puts session[:table] %>
 
 <%= button_to "Drinks", "/items/drinks", method: :get %>
 <%= button_to "Starter", "/items/starter", method: :get  %>
@@ -7,6 +9,7 @@
 <%= button_to "Sides", "/items/sides", method: :get  %>
 
 <%= button_to "Cart", "/carts", method: :get  %>
+<%= button_to "All orders", "/carts/#{session[:table]}", method: :get  %>
 
 <div id='output'>
 
