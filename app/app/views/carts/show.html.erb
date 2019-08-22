@@ -3,26 +3,54 @@
 <% gst = 0 %>
 <% tabletotal = 0 %>
 
+<table class="table table-striped">
+	<thead>
+  <tr>
+  	<th scope="col">Item</th>
+    <th scope="col">Price</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Subtotal</th>
+  </tr>
+</thead>
+<tbody>
+	<% @table.orders.each do |order| %>
+				<% order.items.each do |item| %>
+					  	<tr>
+					    <td scope="row"><%= item.name %></td>
+					    <td>$<%= item.price %></td>
+					    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+					     <td> <%= x.item_quantity %></td>
+					     <td>$<%= item.price * x.item_quantity %></td>
+					     <% tablesubtotal += item.price * x.item_quantity %>
+					     <% end %>
+					   </tr>
+				<% end %>
+	<% end %>
 
-<% @table.orders.each do |order| %>
-  <p><i>Order ID: <%= order.id %></i></p>
-  <% order.items.each do |item| %>
-    <p>Item Name: <%= item.name %></p>
-    <p>Item Price: $<%= item.price %></p>
-    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
-     <p>Quantity: <%= x.item_quantity %></p>
-     <p>Subtotal for this dish: <%= item.price * x.item_quantity %></p>
-     <% tablesubtotal += item.price * x.item_quantity %>
-     <% end %>
-  <% end %>
-<% end %>
+	<hr />
+	<tr>
+	  <td scope="row"><b>Subtotal for this table:</b> </td>
+	  	<td></td>
+	  	<td></td>
+	  <td><b>$<%= '%.2f' % tablesubtotal %></b></td>
+	  </tr>
+	  <tr>
+	  	<td><% gst = tablesubtotal * 0.07 %>
+			<b>GST:</b></td>
+			<td></td>
+			<td></td>
+			<td><b>$<%= '%.2f' % gst %></b></td>
+		</tr>
+		<tr>
+			<td><% tabletotal = tablesubtotal + gst %>
+			<h5><b>Total for this table:</b></h5></td>
+			<td></td>
+			<td></td>
+			<td><h5><b> $<%= '%.2f' % tabletotal %></b></h5></td>
 
-<hr />
-<p>Subtotal for this table: <%= '%.2f' % tablesubtotal %></p>
-<% gst = tablesubtotal * 0.07 %>
-<p>GST: <%= '%.2f' % gst %><p>
-<% tabletotal = tablesubtotal + gst %>
-<p><b>Total for this table: <%= '%.2f' % tabletotal %></b></p>
+	</tr>
+	</tbody>
+</table>
 
 
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', items_path, class:"btn btn-secondary" %>

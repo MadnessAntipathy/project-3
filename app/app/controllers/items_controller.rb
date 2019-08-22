@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  layout "items"
   def index
     @items = Item.all
   end
@@ -24,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    puts params[:category]
+    puts params
     if params.has_key?(:category)
       if(params[:category] == "drinks" )
           @items = Item.where(:category => 'drinks')
