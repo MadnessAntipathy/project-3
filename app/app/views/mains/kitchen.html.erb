@@ -1,25 +1,42 @@
-<h1>works!</h1>
-<%= button_to 'Back to main', root_path, method: :get %>
-<div class="content">
+<div class="container">
+	<div class="row">
+		<% @orders.each do|order| %>
+		<div class="col-6">
 
-<% @orders.each do|order| %>
-<div style="border: 1px solid red; max-width: 300px; display:flex; flex-direction:rows; justify-content: space-around">
-  <div style="border: 1px solid red; max-width: 300px">
-    <p>Table Number: <%= order.table_id %></p>
-    <p>Order ID: <%= order.id %></p>
-    <% order.items.each do|item| %>
-      <p><%= item.name %></p>
-      <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
-      <p>Quantity: <%= x.item_quantity %></p>
-      <% end %>
-    <% end %>
-  </div>
-  <div style="display:flex; flex-direction:column;justify-content:space-between">
-    <p><%= button_tag "Complete", :onclick => "completeOrder()", :id => order.id %></p>
-  </div>
+			<div class="card border-primary mb-3" style="max-width: 20rem;">
+			  <div class="card-header">Table <%= order.table_id %></div>
+			  <div class="card-body">
+			    <h4 class="card-title">Order No: <%= order.id %></h4>
+			    <ul class="list-group">
+			    	<% order.items.each do|item| %>
+					  <li class="list-group-item d-flex justify-content-between align-items-center">
+					    <%= item.name %>
+					    <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+					    <span class="badge badge-primary badge-pill">x<%= x.item_quantity %></span>
+					    <% end %>
+					  </li>
+					  <% end %>
+					</ul>
+			  </div>
+			  <div class="modal-footer">
+			  	<%= button_tag "Complete", :onclick => "completeOrder()", :id => order.id, :class => "btn btn-primary btn-sm" %>
+      	</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<a class="btn btn-primary btn-sm" href=<%=root_path%>>Back to main</a>
+		</div>
+	</div>
+
 </div>
-<% end %>
-</div>
+
+
+
+
 
 
 

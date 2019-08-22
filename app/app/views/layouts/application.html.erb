@@ -18,11 +18,10 @@
 		        <a href="/reports">Reports</a>
 		        <ul class="nav navbar-nav flex-row float-right">
 		        	<% if staff_session %>
-								<p>Current Staff Logged In</p>
-								<%= current_staff.email %>
-								<%= button_to "Logout", destroy_staff_session_path, method: :delete %>
+								<li class="staff-name"><%= current_staff.email %></li>
+								<li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-primary btn-sm"%></li>
 							<% else %>
-		            <li class="nav-item"><a class="nav-link pr-3" href=<%= new_staff_session_path%>>Staff Login</a></li>
+		            <li class="nav-item"><a class="btn btn-primary btn-sm" href=<%= new_staff_session_path%>>Staff Login</a></li>
 		          <% end %>
 		        </ul>
 		    </div>
