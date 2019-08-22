@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get '/kitchen' => 'mains#kitchen'
   get '/table' => 'mains#table'
   get '/getorders' => 'mains#orders'
-  get '/assigntable' => 'mains#assign', as: "assign"
+  post '/assigntable' => 'mains#assign', as: "assign"
   get '/releasetable' => 'mains#release', as: "release"
   get '/completeorders' => 'mains#complete'
   post '/destroyalltables' => 'mains#destroy', as: "destroyall"

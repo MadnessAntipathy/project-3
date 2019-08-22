@@ -22,10 +22,12 @@ class MainsController < ApplicationController
     @tables = Table.all
   end
   def assign
-    @table = Table.find(params[:format])
+    reset_session
+    @table = Table.find(params[:table_id])
     @table.active_status = "true"
     @table.save
-    redirect_to items_path(params[:format])
+    session[:table] = params[:table_id]
+    redirect_to items_path
   end
   def release
     @table = Table.find(params[:format])

@@ -11,21 +11,27 @@
 						<th>Item</th>
 						<th>Quantity</th>
 						<th>Price</th>
+						<th>Sub-Total</th>
 					</tr>
 				</thead>
 
 				<tbody>
-				<% @qty.each do |qty| %>
-					<tr>
-						<td><%= qty.item.name  %></td>
-						<td><%= qty.item_quantity %></td>
-						<td><%= qty.item.price %></td>
+				<% @orders.each do |order| %>
+					<% order.items.each do |item| %>
+					<tr>	
+						<td><%= item.name  %></td>
+						<td><%= @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity  %></td>
+						<td><%= item.price %></td>
+						<td><%= item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity %></td>
+						<% end %>
 					</tr>
 					<% end %>
 				</tbody>
 			</table>
 
-			<h2>Bill Amount: <%= @sale.totalsale %></h2>
+			<h2>Bill Amount:
+				<%= @sum %>
+			</h2>
 		</div>
 	</div>
 

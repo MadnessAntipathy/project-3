@@ -13,9 +13,11 @@
   	<nav class="navbar navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
 		    <div class="container">
 		        <a href="/" class="navbar-brand float-left">Res Logo</a>
+            <% if staff_signed_in? %>
 		        <a href='/kitchen'>Kitchen Orders</a>
 		        <a href='/table'>Table</a>
 		        <a href="/reports">Reports</a>
+            <% end %>
 		        <ul class="nav navbar-nav flex-row float-right">
 		        	<% if staff_session %>
 								<li class="staff-name"><%= current_staff.email %></li>
