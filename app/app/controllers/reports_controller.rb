@@ -1,8 +1,19 @@
 class ReportsController < ApplicationController
    def index
+    @orders = Order.all
+    @purchases = Purchase.all
     @sales = Sale.all
+    @sum = 0
+    @orders.each do |order|
+      order.items.each do |item|
+        @sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity
+      end
+    end
 
-    @total = @sales.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum(:totalsale)
 
   end
 end
+
+
+
+# link_to 'View', sale_path(sale)
