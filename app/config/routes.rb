@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/items/:category' => 'items#show'
 
   get '/carts' => 'carts#index', as: 'carts'
-   get '/carts/:id' => 'carts#show' , as: 'cart'
+  get '/carts/:id' => 'carts#show' , as: 'cart'
+  delete '/carts/:id' => 'carts#destroy', as: 'delete_cart'
 
   get '/orders' => 'orders#index', as: 'orders'
   get '/orders/:id' => 'orders#show' , as: 'order'
