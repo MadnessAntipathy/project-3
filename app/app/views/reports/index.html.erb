@@ -43,7 +43,7 @@
 									<% sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity%>
 								<% end %>
 							<% end %>
-							$<%= '%.2f' % sum %>
+							$<%= '%.2f' % (sum*1.07) %>
 
 						</td>
 						<td><%= sale.created_at.strftime("%d %b '%y") %></td>
