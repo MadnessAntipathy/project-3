@@ -15,12 +15,17 @@ class ItemsController < ApplicationController
   end
 
   def cart
-    p params[:format]
-    p cart_params
-    @cart = Cart.new(cart_params)
-    @cart.save
 
-    redirect_back fallback_location: items_path
+    if Cart.where(table_id:cart_params[:table_id],item_id:cart_params[:item_id]).empty?
+      @cart = Cart.new(cart_params)
+      @cart.save
+    else
+      @cart = Cart.find_by(table_id:cart_params[:table_id],item_id:cart_params[:item_id])
+      @cart.item_quantity += cart_params[:item_quantity].to_i
+      @cart.save
+    end
+    redirect_to items_path
+
 
   end
 

@@ -6,7 +6,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @table = Table.find(params[:id])
+    @table = Table.find(session[:table])
     @purchases = Purchase.all
   end
 
