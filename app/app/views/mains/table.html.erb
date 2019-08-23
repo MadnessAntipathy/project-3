@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-12 text-center">
 			<%= form_with scope: :table, url: tables_path, local: true do |form| %>
-		  	<p><%= form.submit "Add New Table", :class => "btn btn-success" %></p>
+		  	<p><%= form.submit "Add New Table", :class => "btn btn-sm btn-success" %></p>
 			<% end %>
 		</div>
 	</div>
@@ -52,14 +52,14 @@
 	<div class="row">
 		<div class="col-12 text-center">
 			<%= form_with scope: :table, url: destroyall_path, local: true do |form| %>
-		  	<p><%= form.submit "Clear All Tables", :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %></p>
+		  	<p><%= form.submit "Clear All Tables", :class => "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } %></p>
 			<% end %>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12 text-center">
-			<%= button_to 'Back to main', root_path, method: :get, :class => "btn btn-primary" %>
+			<%= button_to 'Back to main', root_path, method: :get, :class => "btn btn-secondary btn-sm" %>
 		</div>
 	</div>
 
