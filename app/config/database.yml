@@ -24,7 +24,8 @@ default: &default
 development:
   <<: *default
   database: app_development
-
+  username: marcus
+  password: password
 
 
 
