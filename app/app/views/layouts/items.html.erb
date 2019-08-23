@@ -19,7 +19,7 @@
 		  <nav id="sidebar" class="sidebar-wrapper">
 		    <div class="sidebar-content">
 		      <div class="sidebar-brand">
-		        <a><button onclick=assistance(<%= session[:table] %>) id="assistance" class="btn btn-primary btn-sm"> Call for assistance </button></a>
+		        <a><button onclick=assistance(<%= session[:table] %>) id="assistance" class="btn btn-primary btn-sm"><%= image_tag image_url('alarm.png'), :class => "menu-icon"%>Call for assistance </button></a>
 		        <div id="close-sidebar">
 		          <i class="fas fa-times"></i>
 		        </div>
@@ -27,12 +27,12 @@
 
 		      <div class="sidebar-header">
 		      		<div class="row">
-		      			<div class="col-3">
-		      				<button type="button" class="btn btn-outline-primary"><a href="/carts" class="menu-nav-text">Cart</a></button>
+		      			<div class="col-5">
+		      				<a href="/carts" class="menu-nav-text"><button type="button" class="btn btn-primary cart-button"><%= image_tag image_url('shopping-cart.png'), :class => "menu-icon"%>Cart</button></a>
 		      			</div>
 
-		      			<div class="col-9">
-		      				<button type="button" class="btn btn-outline-primary">
+		      			<div class="col-7">
+		      				<button type="button" class="btn btn-primary bill-button"><%= image_tag image_url('bill.png'), :class => "menu-icon"%>
 		      				<%= link_to "View Bill", "/carts/#{session[:table]}", class: "menu-nav-text" %>
 		      				</button>
 		      			</div>
@@ -67,32 +67,32 @@
 		          </li>
 		          <li>
 		            <a href='/items/starter'>
-		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <%= image_tag image_path('salad.png')%>
 		              <span class="menu-nav-text">Starters</span>
 		              <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
 		            </a>
 		          </li>
 		          <li>
 		            <a href='/items/mains'>
-		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <%= image_tag image_path('meat.png')%>
 		              <span class="menu-nav-text">Mains</span>
 		            </a>
 		          </li>
 		          <li>
 		            <a href='/items/sides'>
-		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <%= image_tag image_path('burger.png')%>
 		              <span class="menu-nav-text">Sides</span>
 		            </a>
 		          </li>
 		          <li>
 		            <a href='/items/desserts'>
-		              <%= image_tag image_path('kitchen-icon.png')%>
+		              <%= image_tag image_path('cake.png')%>
 		              <span class="menu-nav-text">Desserts</span>
 		            </a>
 		          </li>
 		          <li>
 		            <a href='/items/drinks'>
-		            	<%= image_tag image_path('kitchen-icon.png')%>
+		            	<%= image_tag image_path('pint.png')%>
 		              <span class="menu-nav-text">Beverages</span>
 		            </a>
 		          </li>

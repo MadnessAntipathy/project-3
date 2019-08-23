@@ -7,6 +7,7 @@
 		</div>
 	</div>
 
+
 	<div class="row">
 			<% if @table.active_status %>
 
@@ -50,10 +51,18 @@
 
 	<% else %>
 
-		<div class="col-12 text-center">
-			<%= button_to 'Assign Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post %>
-			<%= button_to 'Delete Table' ,deletetable_path(@table), method: :delete %>
+
+		<div class="col-6 text-center">
+			<%= button_to 'Assign Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post, :class => "btn btn-success btn-sm" %>
 		</div>
+
+		<div class="col-6 text-center">
+			<%= button_to 'Delete Table' ,deletetable_path(@table), method: :delete, :class => "btn btn-danger btn-sm" %>
+		</div>
+	</div>
+
+
+
 
 	<% end %>
 
