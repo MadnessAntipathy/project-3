@@ -16,7 +16,7 @@
 
 					<% if table.active_status? %>
 
-						<div class="card text-white bg-danger mb-3" id=<%= table.id%> style="max-width: 20rem;">
+						<div class="card text-white bg-danger mb-3 table-cards" id=<%= table.id%> style="max-width: 20rem;">
 						  <div class="card-header">
 						  	<h4>Table <%= table.id%></h4>
 						  </div>
@@ -28,7 +28,7 @@
 
 					<% else %>
 
-						<div class="card text-white bg-success mb-3" id=<%= table.id%> style="max-width: 20rem;">
+						<div class="card text-white bg-success mb-3 table-cards" id=<%= table.id%> style="max-width: 20rem;">
 						  <div class="card-header">
 						  	<h4>Table <%= table.id%></h4>
 						  </div>
@@ -70,6 +70,7 @@
 <script>
   window.onload = function(){
     setInterval(function(){
+
 			Rails.ajax({
 			  url: "/notifications",
 			  type: "get",
@@ -78,10 +79,17 @@
 					while (document.querySelector("#notification-area").firstChild){
 						document.querySelector("#notification-area").removeChild(document.querySelector("#notification-area").firstChild)
 					}
+
+					document.querySelectorAll(".table-cards").forEach ((obj)=>{
+						obj.classList.remove("blink_me")
+					})
+
 					data.forEach((obj)=>{
-						console.log("TableID: "+obj.table_id)
 						var p = document.createElement('p')
 						p.innerHTML = "TableID: "+obj.table_id
+						var id = "#"+obj.table_id
+						var table = document.getElementById(obj.table_id)
+						table.classList.add("blink_me");
 						document.querySelector("#notification-area").appendChild(p)
 					})
 				},
