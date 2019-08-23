@@ -8,6 +8,9 @@ class ReportsController < ApplicationController
       order.items.each do |item|
         @sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity
       end
+
+
+    @dailytotal =
     end
 
 

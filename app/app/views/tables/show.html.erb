@@ -15,7 +15,7 @@
 			    <tr>
 			      <th scope="col">Item</th>
 			      <th scope="col">Quantity</th>
-			      <th scope="col">Price</th>
+			      <th scope="col">Order Time</th>
 			      <th scope="col">Status</th>
 			    </tr>
 			  </thead>
@@ -27,7 +27,7 @@
 					      <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
 					      <td>x<%= x.item_quantity %></td>
 					      <% end %>
-					      <td>$<%= item.price %></td>
+					      <td><%= order.created_at.strftime("%I:%M%p") %></td>
 					      <% if order.completed %>
 					      <td><span class="badge badge-pill badge-success">Completed</span></td>
 					      <% else %>

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-12 text-center">
 			<h1>Total sales for the day</h1>
-			<h3><%= @total %></h3>
+			<h3><%= @dailytotal %></h3>
 		</div>
 	</div>
 
@@ -16,6 +16,7 @@
 						<th>Transaction ID</th>
 						<th>Bill Amount</th>
 						<th>Transaction Date</th>
+						<th>Transaction Time</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -30,10 +31,10 @@
 									<% sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity%>
 								<% end %>
 							<% end %>
-							<%= sum %>
+							$<%= sum %>
 						</td>
-
-						<td><%= sale.created_at %></td>
+						<td><%= sale.created_at.strftime("%d %b '%y") %></td>
+						<td><%= sale.created_at.strftime("%I:%M %p") %></td>
 						<td><a><%= link_to "View", sale_path(sale) %></a></td>
 					</tr>
 					<% end %>
