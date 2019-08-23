@@ -20,12 +20,12 @@ class ItemsController < ApplicationController
     @cart = Cart.new(cart_params)
     @cart.save
 
-    redirect_to items_path
+    redirect_back fallback_location: items_path
 
   end
 
   def show
-    puts params
+    puts params.inspect
     if params.has_key?(:category)
       if(params[:category] == "drinks" )
           @items = Item.where(:category => 'drinks')
@@ -43,17 +43,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
-  def optionajax
-      p JSON.parse(params[:category])
-      cat = JSON.parse(params[:category].downcase)
-      @items = Item.where(:category => cat)
-      p @items
-      respond_to do |format|
-          format.json { render json: @items.to_json }
-      end
-  end
   def destroy
       p "DELETINGGGGG"
       p params
