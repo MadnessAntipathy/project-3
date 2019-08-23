@@ -1,4 +1,4 @@
-
+<% if staff_signed_in? %>
 <div class="container">
 
 	<div class="row">
@@ -45,6 +45,7 @@
 
 	<div class="row">
 		<div class="col-12 text-center">
+			<%= button_to 'Access Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post, :class => "btn btn-primary btn-sm" %>
 			<%= button_to 'Settle Table',release_path(@table), method: :get, :class => "btn btn-success btn-sm" %>
 		</div>
 	</div>
@@ -67,3 +68,4 @@
 	<% end %>
 
 </div>
+<% end %>
