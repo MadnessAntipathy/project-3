@@ -1,16 +1,26 @@
+<% grandtotal = 0 %>
+<% @sales.each do |sale| %>
+	<% sum = 0 %>
+	<% @orders.where(sales_id: sale.id).each do |order| %>
+		<% order.items.each do |item| %>
+		<% sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity%>
+		<% end %>
+	<% end %>
+	<% grandtotal += sum %>
+<% end %>
+
 
 <div class="container">
 
 	<div class="row">
-		<div class="col-12 text-center">
-			<h1>Total sales for the day</h1>
-
-
+		<div class="col-12">
+			<h2>Total Daily Sales: $<%= '%.2f' % grandtotal %></h2>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-12 text-center">
+		<div class="col-12">
+			<h5><%= @date.strftime("%d %b %Y") %></h5>
 			<table class="table">
   			<thead class="thead-dark">
 					<tr>
@@ -22,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% grandtotal = 0 %>
+
 					<% @sales.each do |sale| %>
 					<tr>
 						<td><%= sale.id %></td>
@@ -32,13 +42,13 @@
 								<% order.items.each do |item| %>
 									<% sum += item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity%>
 								<% end %>
-								<% grandtotal += sum %>
 							<% end %>
-							$<%= sum %>
+							$<%= '%.2f' % sum %>
+
 						</td>
 						<td><%= sale.created_at.strftime("%d %b '%y") %></td>
 						<td><%= sale.created_at.strftime("%I:%M %p") %></td>
-						<td><a><%= link_to "View", sale_path(sale) %></a></td>
+						<td><a class="btn btn-sm btn-primary" href=<%=sale_path(sale)%>>View</a></td>
 					</tr>
 					<% end %>
 				</tbody>
@@ -48,10 +58,8 @@
 
 	<div class="row">
 		<div class="col-12 text-center">
-			<a class="btn btn-primary btn-lg" href=<%=root_path%>>Back to main</a>
+			<a class="btn btn-secondary btn-sm" href=<%=root_path%>>Back to Main</a>
 		</div>
 	</div>
 
 </div>
-
-<h3><%= grandtotal %></h3>

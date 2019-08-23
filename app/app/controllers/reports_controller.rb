@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
     @orders = Order.all
     @purchases = Purchase.all
     @sales = Sale.all
+
     @sum = 0
     @orders.each do |order|
       order.items.each do |item|
@@ -10,6 +11,7 @@ class ReportsController < ApplicationController
       end
     end
 
+    @date = DateTime.now
 
   end
 end

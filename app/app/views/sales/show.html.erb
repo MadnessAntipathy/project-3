@@ -1,43 +1,53 @@
 <div class="container">
 
 	<div class="row">
-		<div class="col-12 text-center">
+		<div class="col-12">
 			<h2>Transaction ID: <%= @sale.id %></h2>
-			<h5><%= @sale.created_at %></h5>
+			<h5><%= @sale.created_at.strftime("%d %b %Y  %I:%M %p") %></h5>
+		</div>
+	</div>
 
-			<table class="table">
-  			<thead class="thead-dark">
-					<tr>
-						<th>Item</th>
-						<th>Quantity</th>
-						<th>Price</th>
-						<th>Sub-Total</th>
-					</tr>
-				</thead>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Item</th>
+				<th>Unit Price</th>
+				<th>Quantity</th>
+				<th>Sub-Total</th>
+			</tr>
+		</thead>
 
-				<tbody>
-				<% @orders.each do |order| %>
-					<% order.items.each do |item| %>
-					<tr>	
-						<td><%= item.name  %></td>
-						<td><%= @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity  %></td>
-						<td><%= item.price %></td>
-						<td><%= item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity %></td>
-						<% end %>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
+		<tbody>
+		<% @orders.each do |order| %>
+			<% order.items.each do |item| %>
+			<tr>
+				<td><%= item.name  %></td>
+				<td>$<%= '%.2f' % (item.price * @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity) %></td>
+				<td>x<%= @purchases.find_by(order_id: order.id, item_id: item.id).item_quantity  %></td>
+				<td>$<%= '%.2f' % item.price %></td>
+			<% end %>
+			</tr>
+		<% end %>
 
-			<h2>Bill Amount:
-				<%= @sum %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<h2>Bill Amount: $<%= '%.2f' % @sum %>
 			</h2>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-12 text-center">
-			<a class="btn btn-primary btn-lg" href=<%=root_path%>>Back to main</a>
+			<a class="btn btn-primary btn-sm" href=<%=reports_path%>>Back to Transactions</a>
 		</div>
 	</div>
 
