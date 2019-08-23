@@ -63,34 +63,24 @@
 
 </div>
 
-<div id="notification-area"><div>
+
 
 
 
 <script>
   window.onload = function(){
     setInterval(function(){
-
 			Rails.ajax({
 			  url: "/notifications",
 			  type: "get",
 			  data: "",
 			  success: function(data) {
-					while (document.querySelector("#notification-area").firstChild){
-						document.querySelector("#notification-area").removeChild(document.querySelector("#notification-area").firstChild)
-					}
-
 					document.querySelectorAll(".table-cards").forEach ((obj)=>{
 						obj.classList.remove("blink_me")
 					})
-
 					data.forEach((obj)=>{
-						var p = document.createElement('p')
-						p.innerHTML = "TableID: "+obj.table_id
-						var id = "#"+obj.table_id
 						var table = document.getElementById(obj.table_id)
 						table.classList.add("blink_me");
-						document.querySelector("#notification-area").appendChild(p)
 					})
 				},
 			  error: function(data) {}
