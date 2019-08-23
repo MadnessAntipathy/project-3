@@ -2,10 +2,10 @@
 <main class="page-content">
   <div class="container-fluid">
   	<h1><%= @items.first.category.titleize %></h1>
-		<div class="row">
-		<% @items.each do |item| %>
-			<div class="col">
-					<div class="card" style="width: 18rem;">
+  	<div class="row">
+    		<% @items.each do |item| %>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 cards">
+					<div class="card" style="width: 25rem;">
 						<%= image_tag (item.picture), class:"card-img-top" %>
 					  <div class="card-body">
 					    <h5 class="card-title"><%= item.name %></h5>
@@ -21,14 +21,13 @@
 								    	<%= f.select :item_quantity, (0..10), class:"form-control" %>
 								</div>
 						    <div class="col">
-									    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+									    <%= f.submit "Add to Cart", class: "btn btn-outline-primary" %>
 								</div>
 							</div>
 									<% end %>
 				    </div>
 				  </div>
 				</div>
+			<% end %>
 		</div>
-		<% end %>
-	</div>
 </div>
