@@ -1,53 +1,66 @@
 <!-- Shows all items in cart -->
 
 <% allitem = 0 %>
-<table class="table table-striped">
-	<thead>
-  <tr>
-  	<th scope="col">Item</th>
-    <th scope="col">Qty</th>
-    <th scope="col">Price</th>
-    <th scope="col"></th>
-  </tr>
-	</thead>
-	<tbody>
 
-	  <% @carts.each do |cart| %>
-	    <tr>
-	    	  <td scope="row"><%= cart.item.name %></td>
-	        <!-- <td><%= cart.item_quantity %></td> -->
-	        <td><%= form_with scope: :cart, :url => cart_path(cart), method: :patch, local: true  do |f| %>
-	        	<%# f.hidden_field :table_id, :value => session[:table] %>
-	        	<%# f.hidden_field :item_id, :value => cart.item.id %>
-	        	<% puts cart.item_quantity %>
-	        	<%= f.number_field :item_quantity, in: 1..10, value: cart.item_quantity, class: 'form-control-sm', onchange: 'this.form.submit();' %>
-	        <% end %>
-	      </td>
-	        <td><% allitem = cart.item.price * cart.item_quantity %>$<%= '%.2f' % allitem %></td>
-	        <td><%= link_to 'Delete Item', delete_cart_path(cart),
-	              method: :delete,
-	              data: { confirm: 'Are you sure?' }, class:"btn btn-warning" %></td>
-	    </tr>
-	  <% end %>
-	</tbody>
-</table>
+<main class="page-content">
+    <div class="container-fluid">
 
 
+      <div class="row">
+        <div class="col-12">
+          <h3>Your Cart</h3>
+        </div>
+      </div>
 
-<%= form_with scope: :order, url: submit_path, local: true do |form| %>
-  <p>
-    <%= form.hidden_field :table_id, :value => session[:table] %>
-  </p>
-  <p>
-    <% @carts.each do |cart| %>
-    <%= form.hidden_field :item_ids,:multiple => true, :value => cart.item.id %>
-    <%= form.hidden_field :item_quantities,:multiple => true, :value => cart.item_quantity %>
-    <% end %>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Unit Price</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Total</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
 
-  </p>
-  <p>
-    <%= form.submit "Submit order", class:"btn btn-outline-success" %>
-  </p>
-<% end %>
+          <% @carts.each do |cart| %>
+            <tr>
+                <td scope="row"><%= cart.item.name %></td>
+                <td>$<%= '%.2f' % cart.item.price %></td>
+                <!-- <td>x<%= cart.item_quantity %></td> -->
+                <td><%= form_with scope: :cart, :url => cart_path(cart), method: :patch, local: true  do |f| %>
+                    <%# f.hidden_field :table_id, :value => session[:table] %>
+                    <%# f.hidden_field :item_id, :value => cart.item.id %>
+                    <% puts cart.item_quantity %>
+                    <%= f.number_field :item_quantity, in: 1..10, value: cart.item_quantity, class: 'form-control-sm', onchange: 'this.form.submit();' %>
+                  <% end %>
+                </td>
+                <td><% allitem = cart.item.price * cart.item_quantity %>$<%= '%.2f' % allitem %></td>
+                <td><%= link_to 'Delete Item', delete_cart_path(cart),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= link_to 'Back', items_path, class:"btn btn-secondary" %>
+      <%= form_with scope: :order, url: submit_path, local: true do |form| %>
+        <p>
+          <%= form.hidden_field :table_id, :value => session[:table] %>
+        </p>
+        <p>
+          <% @carts.each do |cart| %>
+          <%= form.hidden_field :item_ids,:multiple => true, :value => cart.item.id %>
+          <%= form.hidden_field :item_quantities,:multiple => true, :value => cart.item_quantity %>
+          <% end %>
+
+        </p>
+        <p>
+          <%= form.submit "Submit order", class:"btn btn-outline-success" %>
+        </p>
+      <% end %>
+
+      <%= link_to 'Back', items_path, class:"btn btn-secondary" %>
+    </div>
+</main>

@@ -1,4 +1,7 @@
 class MainsController < ApplicationController
+  # before_action :set_cache_buster
+  before_action :authenticate_staff!, :except => [:index ]
+
   def index
     puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
     puts current_staff.inspect
@@ -44,8 +47,11 @@ class MainsController < ApplicationController
     redirect_to @table
   end
   def destroy
+    reset = "ALTER SEQUENCE tables_id_seq RESTART WITH 1"
     @tables = Table.all
     @tables.destroy_all
+    ActiveRecord::Base.connection.execute(reset)
     redirect_to '/table'
   end
+
 end

@@ -18,5 +18,8 @@ class SalesController < ApplicationController
       end
     end
 
+    transactionamount = 0
+    gst = 0
+
   end
 end

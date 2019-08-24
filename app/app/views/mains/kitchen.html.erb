@@ -1,3 +1,5 @@
+<% if staff_signed_in? %>
+
 <div class="container">
 	<div class="row row-buffer">
 		<% @orders.each do|order| %>
@@ -34,7 +36,7 @@
 
 </div>
 
-
+<% end %>
 
 
 

@@ -25,15 +25,15 @@
 		        	<% if staff_session %>
 
 								<li class="staff-name"><%= current_staff.email %></li>
-					      <li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-primary btn-sm"%></li>
+					      <li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-secondary btn-sm"%></li>
 							<% else %>
-		            <li class="nav-item"><a class="btn btn-primary btn-sm" href=<%= new_staff_session_path%>>Staff Login</a></li>
+		            <li class="nav-item"><a class="btn btn-secondary btn-sm" href=<%= new_staff_session_path%>>Staff Login</a></li>
 		          <% end %>
 		        </ul>
 		</nav>
 
 
     <%= yield %>
-
+    
   </body>
 </html>
