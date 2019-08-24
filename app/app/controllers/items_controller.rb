@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
       @cart.item_quantity += cart_params[:item_quantity].to_i
       @cart.save
     end
+    flash[:alert] = "#{@cart.item.name} has been successfully added to cart"
     redirect_back fallback_location: items_path
-
 
   end
 
