@@ -54,13 +54,13 @@
 	  	$("#itemqty").change(function(){
 	  			// console.log($("#itemqty").val())
 	  			var qty = $("#itemqty").val();
-	  			var qtyname = quantity: qty;
+	  			// var qtyname = quantity: qty;
 	  			console.log("qty: " + qty);
-	  			console.log(qtyname);
+	  			// console.log(qtyname);
 			    Rails.ajax({
 			    	type: "PATCH",
 			      url: `/carts/${$("#itemqty").attr("data-cart-id")}`,
-			      data: {qtyname},
+			      data: `item_quantity=${qty}`,
 
 			      success: function(data, textStatus, xhr) {
 			      	console.log(data)

@@ -13,15 +13,15 @@ class CartsController < ApplicationController
   def update
     puts "add to cart"
     p params
-    p request.query_string
+    puts params[:item_quantity]
       @cart = Cart.find(params[:id])
 
-      @cart.update(:item_quantity => params[:quantity])
+      @cart.update(:item_quantity => params[:item_quantity].to_i)
     puts "finish update"
 
-    respond_to do |format|
-        format.html { render inline: "location.reload();" }
-    end
+    # respond_to do |format|
+    #     format.html { render inline: "location.reload();" }
+    # end
   end
 
   def destroy
