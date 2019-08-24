@@ -2,6 +2,11 @@
 <main class="page-content">
   <div class="container-fluid">
   	<h1><%= @items.first.category.titleize %></h1>
+
+  	<% if flash[:alert] %>
+	    <div class="alert alert-success"><%= flash[:alert] %></div>
+	  <% end %>
+
   	<div class="row">
     		<% @items.each do |item| %>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 cards">
@@ -30,4 +35,9 @@
 				</div>
 			<% end %>
 		</div>
-</div>
+	</div>
+</main>
+
+<script>
+	  $(".alert-success" ).fadeOut(3000);
+</script>
