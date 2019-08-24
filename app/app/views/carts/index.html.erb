@@ -16,9 +16,13 @@
 	    <tr>
 	    	  <td scope="row"><%= cart.item.name %></td>
 	        <!-- <td><%= cart.item_quantity %></td> -->
-	        <td><input data-cart-id = "<%= cart.id %>" id="itemqty" name="item_quantity" type="number" steps="1" min="1" max="10" value="<%= cart.item_quantity %>"></td>
-
-
+	        <td><%= form_with scope: :cart, :url => cart_path(cart), method: :patch, local: true  do |f| %>
+	        	<%# f.hidden_field :table_id, :value => session[:table] %>
+	        	<%# f.hidden_field :item_id, :value => cart.item.id %>
+	        	<% puts cart.item_quantity %>
+	        	<%= f.number_field :item_quantity, in: 1..10, value: cart.item_quantity, class: 'form-control-sm', onchange: 'this.form.submit();' %>
+	        <% end %>
+	      </td>
 	        <td><% allitem = cart.item.price * cart.item_quantity %>$<%= '%.2f' % allitem %></td>
 	        <td><%= link_to 'Delete Item', delete_cart_path(cart),
 	              method: :delete,
@@ -47,27 +51,3 @@
 <% end %>
 
 <%= link_to 'Back', items_path, class:"btn btn-secondary" %>
-
-<script>
-	  window.onload = function(){
-
-	  	$("#itemqty").change(function(){
-	  			// console.log($("#itemqty").val())
-	  			var qty = $("#itemqty").val();
-	  			// var qtyname = quantity: qty;
-	  			console.log("qty: " + qty);
-	  			// console.log(qtyname);
-			    Rails.ajax({
-			    	type: "PATCH",
-			      url: `/carts/${$("#itemqty").attr("data-cart-id")}`,
-			      data: `item_quantity=${qty}`,
-
-			      success: function(data, textStatus, xhr) {
-			      	console.log(data)
-			      },
-			      error: function(xhr, textStatus, errorThrown) {}
-			    })
-			  })
-  }
-
-</script>

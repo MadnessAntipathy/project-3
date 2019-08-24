@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
       @cart.item_quantity += cart_params[:item_quantity].to_i
       @cart.save
     end
-    redirect_to items_path
+    redirect_back fallback_location: items_path
 
 
   end
