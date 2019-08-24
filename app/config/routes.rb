@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   get '/carts' => 'carts#index', as: 'carts'
   get '/carts/:id' => 'carts#show' , as: 'cart'
+  patch '/carts/:id' => 'carts#update'
   delete '/carts/:id' => 'carts#destroy', as: 'delete_cart'
+
 
   get '/orders' => 'orders#index', as: 'orders'
   get '/orders/:id' => 'orders#show' , as: 'order'
