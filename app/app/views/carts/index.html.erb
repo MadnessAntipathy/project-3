@@ -33,7 +33,7 @@
                     <%# f.hidden_field :table_id, :value => session[:table] %>
                     <%# f.hidden_field :item_id, :value => cart.item.id %>
                     <% puts cart.item_quantity %>
-                    <%= f.number_field :item_quantity, in: 1..10, value: cart.item_quantity, class: 'form-control-sm', onchange: 'this.form.submit();' %>
+                    <%= f.number_field :item_quantity, in: 1..10, value: cart.item_quantity, class: 'form-control form-control-sm', onchange: 'this.form.submit();' %>
                   <% end %>
                 </td>
                 <td><% allitem = cart.item.price * cart.item_quantity %>$<%= '%.2f' % allitem %></td>
