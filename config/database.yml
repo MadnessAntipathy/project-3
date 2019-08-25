@@ -78,6 +78,6 @@ test:
 #
 production:
   <<: *default
-  database: app_production
+  database: HEROKU_POSTGRESQL_PUCE_URL
   username: app
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
