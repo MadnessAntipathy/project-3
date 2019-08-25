@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+		<%= javascript_include_tag 'application' %>
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+		<div class="page-wrapper chiller-theme toggled">
+		  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+		    <i class="fas fa-bars"></i>
+		  </a>
+		  <nav id="sidebar" class="sidebar-wrapper">
+		    <div class="sidebar-content">
+		      <div class="sidebar-brand">
+		        <a><button onclick=assistance(<%= session[:table] %>) id="assistance" class="btn btn-primary btn-sm"><%= image_tag image_url('alarm.png'), :class => "menu-icon"%>Call for assistance </button></a>
+		        <div id="close-sidebar">
+		          <i class="fas fa-times"></i>
+		        </div>
+		      </div>
+
+		      <div class="sidebar-header">
+		      		<div class="row">
+		      			<div class="col-5">
+		      				<a href="/carts" class="menu-nav-text"><button type="button" class="btn btn-primary cart-button"><%= image_tag image_url('shopping-cart.png'), :class => "menu-icon"%>Cart</button></a>
+		      			</div>
+
+		      			<div class="col-7">
+		      				<button type="button" class="btn btn-primary bill-button"><%= image_tag image_url('bill.png'), :class => "menu-icon"%>
+		      				<%= link_to "View Bill", "/carts/#{session[:table]}", class: "menu-nav-text" %>
+		      				</button>
+		      			</div>
+		      		</div>
+		      </div>
+		      <!-- sidebar-header  -->
+
+		      <div class="sidebar-search">
+		        <div>
+		          <div class="input-group">
+		            <input type="text" class="form-control search-menu" placeholder="Search...">
+		            <div class="input-group-append">
+		              <span class="input-group-text">
+		                <i class="fa fa-search" aria-hidden="true"></i>
+		              </span>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		      <!-- sidebar-search  -->
+
+		      <div class="sidebar-menu">
+		        <ul>
+		          <li class="header-menu">
+		            <span>Browse By</span>
+		          </li>
+		          <li>
+		            <a href='/items'>
+		            	<%= image_tag image_path('kitchen-icon.png')%>
+		              <span class="menu-nav-text">All Items</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/starter'>
+		              <%= image_tag image_path('salad.png')%>
+		              <span class="menu-nav-text">Starters</span>
+		              <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/mains'>
+		              <%= image_tag image_path('meat.png')%>
+		              <span class="menu-nav-text">Mains</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/sides'>
+		              <%= image_tag image_path('burger.png')%>
+		              <span class="menu-nav-text">Sides</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/desserts'>
+		              <%= image_tag image_path('cake.png')%>
+		              <span class="menu-nav-text">Desserts</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href='/items/drinks'>
+		            	<%= image_tag image_path('pint.png')%>
+		              <span class="menu-nav-text">Beverages</span>
+		            </a>
+		          </li>
+		        </ul>
+		      </div>
+		      <!-- sidebar-menu  -->
+		    </div>
+		    <!-- sidebar-content  -->
+
+		    <div class="sidebar-footer">
+
+		    </div>
+		  </nav>
+
+
+
+
+
+    <%= yield %>
+
+  </body>
+</html>
+
+
+<script>
+  function assistance(id){
+
+    Rails.ajax({
+      url: "/addnotifications",
+      type: "get",
+      data: id,
+      dataType: 'json',
+      success: function(data) {},
+      error: function(data) {}
+    })
+  }
+</script>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between flex-nowrap flex-row">
+  		<a href="/items" class="navbar-brand">Res Logo</a>
+
+
+		    	<ul class="navbar-nav mr-auto text-center">
+		    		<li class="nav-item">
+		        	<a class="nav-link" href='/items/starter'>Starters</a>
+		        </li>
+		        <li class="nav-item">
+		        	<a class="nav-link" href='/items/mains'>Mains</a>
+		      	</li>
+		      	<li class="nav-item">
+			        <a class="nav-link" href="/items/desserts">Desserts</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/items/sides">Sides</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/items/drinks">Drinks</a>
+			      </li>
+            <li class="nav-item">
+              <button onclick=assistance(<%= session[:table] %>) id="assistance" class="nav-link"> Call for assistance </button>
+			      </li>
+		      </ul>
+		      <ul class="navbar-nav my-2 my-lg-0 flex-row float-right">
+	            <li class="nav-item mr-sm-2"><a class="nav-link pr-3" href="/carts">Cart</a></li>
+	            <li class="nav-item my-2 my-sm-0"><%= link_to "All Orders", "/carts/#{session[:table]}", class: "nav-link pr-3" %></li>
+	        </ul>
+
+		</nav> -->
+
+
+
+
+
+		<!-- under div sidebar header -->
+		<!-- <div class="user-pic">
+		          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+		            alt="User picture">
+		        </div>
+		        <div class="user-info">
+		          <span class="user-name">Jhon
+		            <strong>Smith</strong>
+		          </span>
+		          <span class="user-role">Administrator</span>
+		          <span class="user-status">
+		            <i class="fa fa-circle"></i>
+		            <span>Online</span>
+		          </span>
+		        </div> -->

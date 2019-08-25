@@ -1,0 +1,94 @@
+<% if staff_signed_in? %>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<%= form_with scope: :table, url: tables_path, local: true do |form| %>
+		  	<p><%= form.submit "Add New Table", :class => "btn btn-sm btn-success" %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<% @tables.each do|table| %>
+		<div class="col-3">
+
+				<a class="table-card" href=/tables/<%= table.id.to_s %>>
+
+					<% if table.active_status? %>
+
+						<div class="card text-white bg-danger mb-3 table-cards" id=<%= table.id%> style="max-width: 20rem;">
+						  <div class="card-header">
+						  	<h4>Table <%= table.id%></h4>
+						  </div>
+						  <div class="card-body text-center">
+						    <h5 class="card-title">Status</h5>
+						    <p class="card-text">Unavailable</p>
+						  </div>
+						</div>
+
+					<% else %>
+
+						<div class="card text-white bg-success mb-3 table-cards" id=<%= table.id%> style="max-width: 20rem;">
+						  <div class="card-header">
+						  	<h4>Table <%= table.id%></h4>
+						  </div>
+						  <div class="card-body text-center">
+						    <h5 class="card-title">Status</h5>
+						    <p class="card-text">Available</p>
+						  </div>
+						</div>
+
+					<% end %>
+
+				</a>
+
+		</div>
+		<% end %>
+
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<%= form_with scope: :table, url: destroyall_path, local: true do |form| %>
+		  	<p><%= form.submit "Clear All Tables", :class => "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<%= button_to 'Back to main', root_path, method: :get, :class => "btn btn-secondary btn-sm" %>
+		</div>
+	</div>
+
+</div>
+
+<% end %>
+
+
+
+<script>
+  window.onload = function(){
+    setInterval(function(){
+			Rails.ajax({
+			  url: "/notifications",
+			  type: "get",
+			  data: "",
+			  success: function(data) {
+					document.querySelectorAll(".table-cards").forEach ((obj)=>{
+						obj.classList.remove("blink_me")
+					})
+					data.forEach((obj)=>{
+						var table = document.getElementById(obj.table_id)
+						table.classList.add("blink_me");
+					})
+				},
+			  error: function(data) {}
+			})
+			// Notification.where('created_at >= :ten_seconds_ago', :ten_seconds_ago => Time.now - 10.seconds)
+      // window.location.reload()
+    },3000)
+  }
+</script>

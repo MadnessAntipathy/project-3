@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+		<%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+  	<nav class="navbar nav-tabs navbar-dark bg-dark justify-content-between flex-nowrap flex-row">
+
+		        <a href="/" class="navbar-brand float-left"><%= image_tag image_url('taco.png'), :class => "nav-logo"  %>GA Cafe</a>
+            <% if staff_signed_in? %>
+
+		        <a href='/kitchen' class="nav-item nav-link nav-text"><%= image_tag image_url('kitchen-icon.png'), :class => "nav-icon"%>Kitchen Orders</a>
+		        <a href='/table' class="nav-item nav-link nav-text"><%= image_tag image_url('table-icon.png'), :class => "nav-icon"%>Tables</a>
+		        <a href="/reports" class="nav-item nav-link nav-text"><%= image_tag image_url('report-icon.png'), :class => "nav-icon"%>Reports</a>
+
+            <% end %>
+
+		        <ul class="nav navbar-nav flex-row float-right">
+		        	<% if staff_session %>
+
+								<li class="staff-name"><%= current_staff.email %></li>
+					      <li><%= button_to "Logout", destroy_staff_session_path, method: :delete, :class => "btn btn-secondary btn-sm"%></li>
+							<% else %>
+		            <li class="nav-item"><a class="btn btn-secondary btn-sm" href=<%= new_staff_session_path%>>Staff Login</a></li>
+		          <% end %>
+		        </ul>
+		</nav>
+
+
+    <%= yield %>
+    
+  </body>
+</html>

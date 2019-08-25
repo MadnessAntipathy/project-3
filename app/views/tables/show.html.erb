@@ -1,0 +1,71 @@
+<% if staff_signed_in? %>
+<div class="container">
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<h1>Table <%= @table.id %></h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+			<% if @table.active_status %>
+
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">Item</th>
+			      <th scope="col">Quantity</th>
+			      <th scope="col">Order Time</th>
+			      <th scope="col">Status</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<% @table.orders.each do |order| %>
+			  		<% order.items.each do |item| %>
+					    <tr>
+					      <td><%= item.name %></td>
+					      <% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+					      <td>x<%= x.item_quantity %></td>
+					      <% end %>
+					      <td><%= order.created_at.strftime("%I:%M%p") %></td>
+					      <% if order.completed %>
+					      <td><span class="badge badge-pill badge-success">Completed</span></td>
+					      <% else %>
+					      <td><span class="badge badge-pill badge-danger">Pending</span></td>
+					      <% end %>
+					    </tr>
+					  <% end %>
+					<% end %>
+
+			  </tbody>
+			</table>
+
+	</div>
+
+	<div class="row">
+		<div class="col-12 text-center">
+			<%= button_to 'Access Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post, :class => "btn btn-primary btn-sm" %>
+			<%= button_to 'Settle Table',release_path(@table), method: :get, :class => "btn btn-success btn-sm" %>
+		</div>
+	</div>
+
+	<% else %>
+
+
+		<div class="col-6 text-center">
+			<%= button_to 'Assign Table',{:controller => "mains", :action => "assign", :table_id => @table}, method: :post, :class => "btn btn-success btn-sm" %>
+		</div>
+
+		<div class="col-6 text-center">
+			<%= button_to 'Delete Table' ,deletetable_path(@table), method: :delete, :class => "btn btn-danger btn-sm" %>
+		</div>
+	</div>
+
+
+
+
+	<% end %>
+
+</div>
+<% end %>

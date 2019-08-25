@@ -1,0 +1,55 @@
+<% allitem = 0 %>
+<% tablesubtotal = 0 %>
+<% gst = 0 %>
+<% tabletotal = 0 %>
+
+
+<main class="page-content">
+  <div class="container-fluid">
+
+  	<div class="row">
+  		<div class="col-12">
+  			<h1>Table <%= @table.id %></h1>
+  		</div>
+  	</div>
+
+
+		<table class="table table-striped">
+			<thead>
+			  <tr class="row">
+			  	<th class="col-1">Qty</th>
+			  	<th class="col-8">Item</th>
+			    <th class="col-3">Price</th>
+			  </tr>
+			</thead>
+			<tbody>
+			<% @table.orders.each do |order| %>
+				<% order.items.each do |item| %>
+			  <tr class="row">
+		    	<% @purchases.where(order_id: order.id, item_id: item.id).each do |x| %>
+		     	<td class="col-1"><%= x.item_quantity %></td>
+		     	<td class="col-8"><%= item.name %></td>
+		     	<td class="col-3"><% allitem = item.price * x.item_quantity %>$<%= '%.2f' % allitem %></td>
+		     	<% tablesubtotal += item.price * x.item_quantity %>
+		    	<% end %>
+		   	</tr>
+				<% end %>
+			<% end %>
+
+				<tr class="row">
+			  	<td class="col-9"><b>Subtotal:</b> </td>
+			  	<td class="col-3"><b>$<%= '%.2f' % tablesubtotal %></b></td>
+			  </tr>
+			  <tr class="row">
+			  	<td class="col-9"><% gst = tablesubtotal * 0.07 %><b>GST:</b></td>
+					<td class="col-3"><b>$<%= '%.2f' % gst %></b></td>
+				</tr>
+				<tr class="row">
+					<td class="col-9"><% tabletotal = tablesubtotal + gst %><h5><b>Total:</b></h5></td>
+					<td class="col-3"><h5><b> $<%= '%.2f' % tabletotal %></b></h5></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<%= link_to 'Back', items_path, class:"btn btn-secondary" %>
