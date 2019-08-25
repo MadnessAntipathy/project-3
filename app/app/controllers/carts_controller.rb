@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   layout "items"
   def index
-    @carts = Cart.where(:table_id => session[:table])
+    @carts = Cart.where(:table_id => session[:table]).order(:id)
 
   end
 

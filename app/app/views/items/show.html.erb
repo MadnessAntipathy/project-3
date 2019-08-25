@@ -4,7 +4,7 @@
   	<h1><%= @items.first.category.titleize %></h1>
 
   	<% if flash[:alert] %>
-	    <div class="alert alert-success"><%= flash[:alert] %></div>
+	    <div class="row alert alert-success" role="alert"><%= flash[:alert] %></div>
 	  <% end %>
 
   	<div class="row">
